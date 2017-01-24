@@ -1,6 +1,5 @@
-const pg = require('pg')
 const fs = require('fs')
 
-if(fs.existSync('.env')){
+if(fs.existsSync('../../.env')){
   require('dotenv').config()
 }

@@ -1,4 +1,6 @@
-const defaultConfig = (env) => {
+const config = require('../config/config.js')
+
+const defaultConfig = env => {
   const connectionString = process.env.DATABASE_URL ||
    `postgres://${process.env.USER}@localhost:5432/noob-${env}`
 
@@ -10,7 +12,7 @@ const defaultConfig = (env) => {
       max: 10
     },
     migrations: {
-      directory: __dirname + 'src/database/migrations',
+      directory: __dirname + '/migrations',
       tableName: 'migrations'
     },
     seeds: {
@@ -19,6 +21,4 @@ const defaultConfig = (env) => {
   }
 }
 
-const knex = require('knex')(defaultConfig(process.env.NODE_ENV))
-
-export knex
+module.exports = { 'development': defaultConfig('development') }
