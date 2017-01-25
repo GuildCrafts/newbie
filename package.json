@@ -5,7 +5,7 @@
   "scripts": {
     "start": "./node_modules/.bin/nodemon ./bin/www --exec babel-node",
     "migrate": "babel-node ./node_modules/.bin/knex --knexfile ./src/database/knexfile.js migrate:latest",
-    "test": "mocha --compilers js:babel-register ./src/tests/**/*.js "
+    "test": "mocha --compilers js:babel-register ./src/tests/**/*.js"
   },
   "dependencies": {
     "@learnersguild/idm-jwt-auth": "^1.2.1",
