@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "./node_modules/.bin/nodemon ./bin/www --exec babel-node"
+    "start": "./node_modules/.bin/nodemon ./bin/www --exec babel-node",
+    "migrate": "babel-node ./node_modules/.bin/knex --knexfile ./src/database/knexfile.js migrate:latest",
+    "test": "mocha --compilers js:babel-register ./src/tests/**/*.js"
   },
   "dependencies": {
     "@learnersguild/idm-jwt-auth": "^1.2.1",
@@ -15,7 +17,9 @@
     "babel-plugin-transform-regenerator": "^6.22.0",
     "babel-plugin-transform-runtime": "^6.22.0",
     "babel-preset-latest": "^6.22.0",
+    "babel-register": "^6.22.0",
     "body-parser": "~1.15.2",
+    "chai": "^3.5.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
     "dotenv": "^4.0.0",
@@ -24,6 +28,7 @@
     "html-webpack-plugin": "^2.26.0",
     "json-loader": "^0.5.4",
     "knex": "^0.12.6",
+    "mocha": "^3.2.0",
     "morgan": "~1.7.0",
     "nodemon": "^1.11.0",
     "pg": "^6.1.2",
