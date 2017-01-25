@@ -1,4 +1,10 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React, { Component } from 'react'
+import { render } from 'react-dom'
 
-ReactDOM.render(document.getElementById('root'))
+class Farts extends Component {
+  render() {
+    return <div>Farts</div>
+  }
+}
+
+render(<Farts />, document.getElementById('root'))

@@ -1,6 +1,4 @@
-const config = require('../config/config.js')
-
-const defaultConfig = env => {
+const setKnexConfig = env => {
   const connectionString = process.env.DATABASE_URL ||
    `postgres://${process.env.USER}@localhost:5432/noob-${env}`
 
@@ -21,4 +19,8 @@ const defaultConfig = env => {
   }
 }
 
-module.exports = { 'development': defaultConfig('development') }
+const knexConfig = {
+  'development': setKnexConfig('development')
+}
+
+module.exports = knexConfig

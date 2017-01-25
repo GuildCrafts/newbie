@@ -1,12 +1,13 @@
 {
-  "presets": [ "latest" ],
+  "presets": [ "es2015", "es2016", "latest", "react" ],
   "plugins": [
     "transform-class-properties",
     "transform-object-rest-spread",
     ["transform-regenerator", {"async": false}],
     ["transform-runtime", {
       "helpers": false,
-      "regenerator": true,
+      "polyfill": false,
+      "regenerator": true
     }]
   ]
 }
