@@ -1,6 +1,5 @@
 import chai, { expect } from 'chai'
-import knex from '../../database/knex'
-import * as user from '../../database/queries/users'
+import * as user from '../../src/database/queries/users'
 
 describe('user', () => {
   const newUser = [

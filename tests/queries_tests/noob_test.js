@@ -1,6 +1,5 @@
 import chai, { expect } from 'chai'
-import knex from '../../database/knex'
-import * as noob from '../../database/queries/noob'
+import * as noob from '../../src/database/queries/noob'
 
 describe('noob', () => {
   const newNoobs = [
@@ -42,11 +41,6 @@ describe('noob', () => {
     it('inserts noob into table', () => {
       return noob.create(newNoobs[0]).then(noobFound => {
         expect(noobFound.full_name).to.equal('New Noobie')
-      })
-    }),
-    it('increase the size fo the noobs table', () => {
-      return noob.findAll().then(noobFound =>{
-        expect(noobFound.length).to.equal(1)
       })
     })
   })
@@ -97,7 +91,11 @@ describe('noob', () => {
   describe('findAll', () => {
     it('finds all the noobs in the noobs table', () => {
       return noob.findAll().then(noobFound => {
-        expect(noobFound.length).to.be.equal(2)
+        let count = 0
+        for(let noob in noobFound) {
+          count += 1
+        }
+        expect(noobFound.length).to.be.equal(count)
       })
     })
   })

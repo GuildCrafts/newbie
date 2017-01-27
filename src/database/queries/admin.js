@@ -1,18 +1,12 @@
 import knex from '../knex'
 
-import {
-  createRecord,
-  findRecord,
-  updateRecord,
-  deleteRecord,
-  findAllWhere,
-  findAll
-} from './utilities'
+import * as utilities from './utilities'
 
-const assignNoobToMentor = ( mentor_github_handle, noob_github_handle ) => {
-  const { mentor_id } = findRecord('user', 'github_handle', mentor_github_handle )
-  updateRecord( 'noob', 'github_handle', noob_github_handle, {'mentor_id' : mentor_id} )
-  .then( noob => noob )
+const assignTo = (mentor_github_handle, noob_github_handle) => {
+  return utilities.findRecord('users', 'github_handle', mentor_github_handle)
+  .then( mentor => {
+    return utilities.updateRecord('noob', 'github_handle', noob_github_handle, {'mentor_id': mentor.id })
+  })
 }
 
-export assignNoobToMentor
+export {assignTo}

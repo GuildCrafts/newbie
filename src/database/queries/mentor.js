@@ -1,17 +1,12 @@
 import knex from '../knex'
 
-import {
-  createRecord,
-  findRecord,
-  updateRecord,
-  deleteRecord,
-  findAllWhere,
-  findAll
-} from './utilities'
+import * as utilities from './utilities'
 
-const findMentorsNoobs = ( github_handle ) => {
-  const { mentor_id } = findRecord('user', 'github_handle', github_handle )
-  findAllWhere('noobs', 'mentor_id', mentor_id ).then(noob => noob)
+const noobs = ( github_handle ) => {
+  return utilities.findRecord('users', 'github_handle', github_handle )
+  .then(mentor => {
+    return utilities.findAllWhere('noob', 'mentor_id', mentor.id )
+  })
 }
 
-export findMentorsNoobs 
+export {noobs}
