@@ -31,16 +31,16 @@ describe('task', () => {
     due_date: '2019-02-01'
   }
 
-  beforeEach( () => {
-    return Promise.all([
+  beforeEach( () =>
+    Promise.all([
       task.deleteAll(),
       task.add(fakeTasks)
     ])
-  })
+  )
 
-  it('should exist', () => {
+  it('should exist', () =>
     expect(task).to.be.a('object')
-  })
+  )
 
   it('gets all tasks', () =>
     task.getAll().then( tasks => {
@@ -51,9 +51,9 @@ describe('task', () => {
   )
 
   it('gets task by id', () =>
-    task.getBy('id', 7).then( task => {
+    task.getBy('id', 7).then( task =>
       expect(task[0].user_id).to.equal(2)
-    })
+    )
   )
 
   it('gets tasks by user_id', () =>
@@ -64,9 +64,10 @@ describe('task', () => {
   )
 
   it('updates a task', () =>
-    task.update('user_id', 2, fakeUpdate).then( task => {
+    task.update(14, fakeUpdate).then( task =>
       expect(task.user_id).to.equal(22)
-    })
+    )
+
   )
 
   it('deletes a task', () =>

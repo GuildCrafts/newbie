@@ -10,8 +10,8 @@ const getAll = () =>
 const getBy = ( column, data ) =>
   _.findAllWhere( 'task', column, data )
 
-const update = ( column, data, attributes ) =>
-  _.updateRecord( 'task', column, data, attributes )
+const update = ( id, attributes ) =>
+  _.updateRecord( 'task', 'id', id, attributes )
 
 const expunge = ( column, data ) =>
   _.deleteRecord( 'task', column, data )

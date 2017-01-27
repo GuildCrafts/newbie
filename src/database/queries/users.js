@@ -27,4 +27,4 @@ export {
   deleteByHandle,
   findByRole,
   findAll
-          }
+}

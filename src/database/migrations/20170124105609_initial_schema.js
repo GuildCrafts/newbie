@@ -12,6 +12,7 @@ exports.up = function(knex, Promise) {
 
     knex.schema.createTable('task', function(table) {
       table.increments('id').primary();
+      table.string('body');
       table.integer('template_task_id');
       table.integer('user_id');
       table.boolean('is_complete').defaultTo(false);
