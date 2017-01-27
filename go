@@ -24,6 +24,8 @@ function test {
 function init {
     echo "Initializing: add initialization steps here"
     npm install
+    reset_db development
+    reset_db test
 }
 
 function add_env_var_to_shell {
@@ -45,8 +47,11 @@ function source_shell_profile {
 function install_idm {
     PROJECT_HOME="${PWD}"
     IDM_HOME="${PWD}/../idm"
-    if ! [ -d "idm" ]; then
+    if ! [ -d ${IDM_HOME} ]; then
+        echo "cloning IDM github repo"
         git clone git@github.com:LearnersGuild/idm.git ${IDM_HOME}
+    else
+        echo "IDM github already exists. Skipping"
     fi
 
     if ! [ $NODE_ENV ]; then
