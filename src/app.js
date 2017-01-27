@@ -1,25 +1,25 @@
 import express from 'express'
 import path from 'path'
-import favicon from 'serve-favicon'
+//import favicon from 'serve-favicon'
 import logger from 'morgan'
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
 
-import index from './routes/index'
 import auth from './init/auth'
 
 const app = express()
 
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'src/public')));
+app.use(express.static(path.join(__dirname, 'public')))
 
-auth( app )
 
-app.use('/', index)
+/* GET home page. */
+app.get('/', function(req, res, next) {
+  res.sendFile(path.join(__dirname, 'public/dist/index.html'))
+})
 
 // catch 404 and forward to error handler
 app.use( (req, res, next) => {

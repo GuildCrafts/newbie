@@ -9,10 +9,10 @@ exports.up = function(knex, Promise) {
       table.string('github_handle');
       table.string('role');
       table.string('email');
-      table.timestamps();
+      table.timestamps(true, true);
     })
   ])
-  
+
 };
 
 exports.down = function(knex, Promise) {

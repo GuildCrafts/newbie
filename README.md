@@ -1,36 +1,46 @@
-#Domains
+### Local environment setup
 
-* ######User
-  * Mentor
-  * Noob
-  * Admin
+* ###### Install IDM
+  ```
+  $ ./go install-idm
+  ```
 
-* ######Roles
-  * id ( serial )
-  * type ( string )
+* ######Setup .env
+  * Create development env file in root directory: .env.development
+  * Paste in the following code:
+  ```
+  DATABASE_URL='postgres://[**local user name** ]@localhost:5432/noob-development'
+  JWT_PUBLIC_KEY="[**your public key**]"
+  ```
+  * Get your local user name with `$ whoami`
+  * Public key is located `$ /tmp/public-key.pem`
+  * Create test env file in root directory: .env.test
+  * Paste in the following code:
+  ```
+  DATABASE_URL='postgres://[**local user name** ]@localhost:5432/noob-test'
+  JWT_PUBLIC_KEY="[**your public key**]"
+  ```
+* ###### Run IDM and mehserve
+  * Open a new terminal window and navigate to IDM directory:
+    ```
+    $ npm start
+    ```
+  * Open another terminal window and navigate to IDM directory:
+    ```
+    $ mehserve run
+    ```
 
-* ######Template_tasks
-  * id ( serial )
-  * body ( txt )
-  * user_type
-  * created_at
+* ###### Run these scripts
+  * Install packages:
+    ```
+    $ ./go init
+    ```
+  * Create database:
+    ```
+    $ ./go create_db development
+    ```
 
-* ######Task
-  * user_id ( noob or mentor )
-  * body
-  * is_complete
-  * due_date
-
-* ######User
-  * id ( serial )
-  * github_handle
-  * roles ( array )
-  * created_at
-  * updated_at
-  * email
-  * full_name
-
-* ######Noob
-  * user_id
-  * start_date
-  * mentor_id
+  * Run tests:
+    ```
+    $ ./go test
+    ```

@@ -16,7 +16,7 @@ exports.up = function(knex, Promise) {
       table.integer('user_id');
       table.boolean('is_complete').defaultTo(false);
       table.dateTime('due_date');
-      table.timestamps();
+      table.timestamps(true, true);
     }),
 
     knex.schema.createTable('template_task', function(table) {
@@ -25,7 +25,7 @@ exports.up = function(knex, Promise) {
       table.text('body');
       table.string('user_role')
       table.integer('days_to_complete');
-      table.timestamps();
+      table.timestamps(true, true);
     })
 
   ])
