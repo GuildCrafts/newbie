@@ -21,10 +21,13 @@ const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
 })
 
 module.exports = {
-  entry: ['./src/browser/main.js'],
+  entry: [
+    'webpack/hot/only-dev-server',
+    './src/browser/main.js',
+  ],
   module: {
     loaders: [
-      {test:/\.js$/, include: `${rootDir}/src/browser`, loader: 'babel-loader'},
+      {test:/\.js$/, loaders: ['react-hot', 'babel-loader'], include: `${rootDir}/src/browser`},
       {include:  /\.json$/, loaders: ['json-loader']}
     ]
   },
@@ -32,5 +35,8 @@ module.exports = {
     filename: 'bundle.js',
     path: `${rootDir}/src/public/dist`
   },
-  plugins: [HTMLWebpackPluginConfig]
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    HTMLWebpackPluginConfig
+  ]
 }

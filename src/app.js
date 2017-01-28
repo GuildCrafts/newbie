@@ -1,13 +1,32 @@
 import express from 'express'
 import path from 'path'
-//import favicon from 'serve-favicon'
 import logger from 'morgan'
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
+import webpack from 'webpack'
+import config from '../webpack.config'
+import { getEnv }from './config/config'
+
 
 import auth from './init/auth'
 
 const app = express()
+const compiler = webpack(config);
+if(getEnv() === 'development') {
+  app.use(require('webpack-dev-middleware')(compiler, {
+    publicPath: config.output.publicPath,
+    serverSideRender: false,
+    stats: {
+      color: true,
+      hash: false,
+      timings: true,
+      chunks: false,
+      chunkModules: false,
+      modules: false,
+    }
+  }));
+  app.use(require('webpack-hot-middleware')(compiler));
+}
 
 app.use(logger('dev'));
 app.use(bodyParser.json());

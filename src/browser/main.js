@@ -1,10 +1,17 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
+import { Router, Route, Link, browserHistory } from 'react-router'
+import Dashboard from './Dashboard'
 
-class Farts extends Component {
+class Root extends Component {
   render() {
-    return <div>Farts</div>
+    return (
+      <Router history={browserHistory}>
+        <Route path='/' component={Dashboard} />
+      </Router>
+    )
+
   }
 }
 
-render(<Farts />, document.getElementById('root'))
+render(<Root />, document.getElementById('root'))
