@@ -15,3 +15,4 @@ Quality
 * Code is easily readable with descriptive variable names.
 * No stray comments and console logs left in code.
 * Formatting is accounted for (whitespace, etc.)
+* All frontend code has basic styling
