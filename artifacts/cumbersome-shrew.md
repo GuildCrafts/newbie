@@ -1,10 +1,13 @@
 # Cumbersome Shrew
+## Description
+Working on Noob's task view interface.
 
-- [ ] Issue #44: Create a UI for a noob to be able to view all the tasks assigned
-- [ ] Issue #45: Create a UI to view all tasks for a mentor
-- [ ] Issue #46: Create an API for tasks (listing tasks for noobs/mentors)
+## Project Specs
+- [ ] [Issue #44:](https://github.com/GuildCrafts/noob/issues/44) Create a UI for a noob to be able to view all the tasks assigned
+- [ ] [Issue #45:](https://github.com/GuildCrafts/noob/issues/45) Create a UI to view all tasks for a mentor
+- [ ] [Issue #46:](https://github.com/GuildCrafts/noob/issues/46) Create an API for tasks (listing tasks for noobs/mentors)
 
-Quality
+## Quality
 * Making sure all tests pass.
 * Make sure all new code has tests.
 * Test React components as well.
