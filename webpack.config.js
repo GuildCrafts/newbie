@@ -2,6 +2,7 @@ const rootDir = __dirname
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const jsonLoader = require('json-loader');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   template: rootDir + '/src/browser/index.html',
   filename: 'index.html',
@@ -28,7 +29,12 @@ module.exports = {
   module: {
     loaders: [
       {test:/\.js$/, loaders: ['react-hot', 'babel-loader'], include: `${rootDir}/src/browser`},
-      {include:  /\.json$/, loaders: ['json-loader']}
+      {include:  /\.json$/, loaders: ['json-loader']},
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract('css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'),
+        include: __dirname + '/src/browser'
+      }
     ]
   },
   output: {
@@ -37,6 +43,7 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    HTMLWebpackPluginConfig
+    HTMLWebpackPluginConfig,
+    new ExtractTextPlugin('style.css'),
   ]
 }
