@@ -40,7 +40,7 @@ describe('noob', () => {
   describe('create', () => {
     it('inserts noob into table', () => {
       return noob.create(newNoobs[0]).then(noobFound => {
-        expect(noobFound.full_name).to.equal('New Noobie')
+        return expect(noobFound[0].full_name).to.equal('New Noobie')
       })
     })
   })
