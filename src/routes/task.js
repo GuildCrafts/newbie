@@ -10,8 +10,7 @@ router.get('/', (request, response, next) => {
   const currentUser = request.user
   user.findByHandle(currentUser.handle)
   .then( returnedUser => {
-    console.log("FOUND USER");
-    task.getBy('user_id', 1)
+    task.getBy('user_id', returnedUser.id)
     .then( tasks => {
         response.json( tasks )
       })
