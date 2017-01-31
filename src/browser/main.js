@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { Router, Route, Link, browserHistory } from 'react-router'
-import Dashboard from './Dashboard'
+import Dashboard from './components/pages/Dashboard'
 
 class Root extends Component {
   render() {
@@ -10,7 +10,6 @@ class Root extends Component {
         <Route path='/' component={Dashboard} />
       </Router>
     )
-
   }
 }
 

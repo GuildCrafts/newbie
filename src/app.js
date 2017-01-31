@@ -23,7 +23,7 @@ if(getEnv() === 'development') {
       timings: true,
       chunks: false,
       chunkModules: false,
-      modules: false,
+      modules: false
     }
   }));
   app.use(require('webpack-hot-middleware')(compiler));
