@@ -11,25 +11,17 @@ router.get('/', (request, response, next) => {
   user.findByHandle(currentUser.handle)
   .then( returnedUser => {
     task.getBy('user_id', returnedUser.id)
-    .then( tasks => {
-        response.json( tasks )
-      })
+    .then( response.json )
   })
-  .catch( err => {
-    return err
-  })
+  .catch( err )
 })
 
 router.post('/:task_id', (request, response, next) => {
   const { task_id } = request.params
   const { is_complete } = request.body
   task.update( task_id, { is_complete })
-  .then( completedTask => {
-    response.json(completedTask)
-  })
-  .catch( err => {
-    return err
-  })
+  .then( response.json )
+  .catch( err )
 
 })
 
