@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
 import webpack from 'webpack'
 import config from '../webpack.config'
+import task from './routes/task'
 import { getEnv }from './config/config'
 
 
@@ -33,12 +34,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')))
+auth(app)
 
+app.use('/api/task', task)
 
 /* GET home page. */
 app.get('/', function(req, res, next) {
   res.sendFile(path.join(__dirname, 'public/dist/index.html'))
 })
+
 
 // catch 404 and forward to error handler
 app.use( (req, res, next) => {
