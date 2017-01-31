@@ -16,8 +16,22 @@ router.get('/', (request, response, next) => {
         response.json( tasks )
       })
   })
+  .catch( err => {
+    return err
+  })
+})
 
+router.post('/:task_id', (request, response, next) => {
+  const { task_id } = request.params
+  const { is_complete } = request.body
+  task.update( task_id, { is_complete })
+  .then( completedTask => {
+    response.json(completedTask)
+  })
+  .catch( err => {
+    return err
+  })
 
 })
 
-module.exports = router
+export default router
