@@ -30,7 +30,7 @@ describe('user', () => {
   describe('create', () => {
     it('inserts user into table', () => {
       return user.create(newUser[0]).then(user => {
-        expect(user.full_name).to.equal('Ugly Face')
+        expect(user[0].full_name).to.equal('Ugly Face')
       })
     })
   })

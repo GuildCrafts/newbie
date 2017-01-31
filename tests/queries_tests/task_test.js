@@ -1,7 +1,7 @@
 import chai, { expect } from 'chai'
 import * as task from '../../src/database/queries/task'
 
-describe.only('task', () => {
+describe('task', () => {
 
   const fakeTasks = [
     {
