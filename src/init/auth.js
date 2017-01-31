@@ -21,4 +21,3 @@ const ensureUserLoggedIn = (req, res, next) => {
 }
 
 export default initialize
-
