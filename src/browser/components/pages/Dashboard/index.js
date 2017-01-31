@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
+import Layout from '../../molecules/Layout/index'
 
 export default class Dashboard extends Component {
 
   render () {
-    return (<div>Dashboard</div>)
+    return (
+        <Layout>
+          <div>Dashboard</div>
+        </Layout>
+    )
   }
 }
