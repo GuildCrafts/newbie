@@ -12,10 +12,12 @@ router.get('/', (request, response, next) => {
     .then( response.json )
     .catch( err => {
       console.log(`Error retrieving tasks for user ${currentUser.handle} from the db`, err);
+      throw err
     })
   })
   .catch( err => {
     console.log(`Error getting user with github_handle:${currentUser.handle} from the db`, err);
+    throw err
   })
 })
 
@@ -26,6 +28,7 @@ router.post('/:task_id', (request, response, next) => {
   .then( response.json )
   .catch( err => {
     console.log(`Error updating property on Task id ${task_id} in the db`, err);
+    throw err
   })
 
 })
