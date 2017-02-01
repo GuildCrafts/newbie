@@ -1,7 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const path = require('path')
-const pg = require('pg')
 const task = require('../database/queries/task.js')
 const user = require('../database/queries/users.js')
 
@@ -12,8 +10,13 @@ router.get('/', (request, response, next) => {
   .then( returnedUser => {
     task.getBy('user_id', returnedUser.id)
     .then( response.json )
+    .catch( err => {
+      console.log(`Error retrieving tasks for user ${currentUser.handle} from the db`, err);
+    })
   })
-  .catch( err )
+  .catch( err => {
+    console.log(`Error getting user with github_handle:${currentUser.handle} from the db`, err);
+  })
 })
 
 router.post('/:task_id', (request, response, next) => {
@@ -21,7 +24,9 @@ router.post('/:task_id', (request, response, next) => {
   const { is_complete } = request.body
   task.update( task_id, { is_complete })
   .then( response.json )
-  .catch( err )
+  .catch( err => {
+    console.log(`Error updating property on Task id ${task_id} in the db`, err);
+  })
 
 })
 
