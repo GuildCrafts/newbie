@@ -5,6 +5,7 @@ const user = require('../database/queries/users.js')
 
 
 router.get('/', (request, response, next) => {
+  console.log('GOT TO FETCH ROUTE');
   const currentUser = request.user
   user.findByHandle(currentUser.handle)
   .then( returnedUser => {
@@ -30,7 +31,6 @@ router.post('/:task_id', (request, response, next) => {
     console.log(`Error updating property on Task id ${task_id} in the db`, err);
     throw err
   })
-
 })
 
 export default router

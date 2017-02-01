@@ -1,9 +1,48 @@
 
 .TaskDiv {
   background-color: yellowgreen;
+  color: azure;
+  border: papayawhip 5px solid;
+  margin: 5px;
+  padding: 3px;
+  font-family: comic;
+  border-radius: 3px;
+}
+
+.TaskComplete {
+  background-color: #ab8;
   color: mintcream;
   border: papayawhip 5px solid;
   margin: 5px;
   padding: 3px;
   font-family: comic;
+  border-radius: 3px;
+}
+
+.NearComplete {
+  background-color: orange;
+  color: honeydew;
+  border: papayawhip 5px solid;
+  margin: 5px;
+  padding: 3px;
+  font-family: comic;
+  border-radius: 3px;
+}
+
+.PastDue {
+  background-color: orangered;
+  color: ghostwhite;
+  border: papayawhip 5px solid;
+  margin: 5px;
+  padding: 3px;
+  font-family: comic;
+  border-radius: 3px;
+}
+
+.TaskBody {
+  font-size: 1.1rem;
+  background-color: rgba(125,125,125,0.4);
+  border: papayawhip 1px solid;
+  padding: 2px 6px;
+  margin: 3px;
 }

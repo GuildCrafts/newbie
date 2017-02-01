@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Layout from '../../molecules/Layout/index'
 import Task from '../Task/index'
 import styles from './index.css';
-
+const moment = require('moment')
 
 export default class TaskList extends Component {
   constructor (props) {
@@ -13,6 +13,10 @@ export default class TaskList extends Component {
   }
 
   componentWillMount(){
+    this.loadTasks()
+  }
+
+  loadTasks(){
     const fetchDetails = {
       method: 'GET',
       mode: 'cors',
@@ -28,20 +32,49 @@ export default class TaskList extends Component {
     })
     .then( result => {
       this.setState({
-        tasks: result
+        tasks: result.sort((a,b) => {
+          if( moment(a.due_date).isBefore(b.due_date) ){
+            return -1
+          } else {
+            return 1
+          }
+        })
       })
+    })
+    .catch( err => {
+      console.log('Error loading tasks', err);
+      return err
     })
   }
 
   render() {
-    const displayTasks = []
+    const progressTasks = []
+    const completedTasks = []
     for (let i of this.state.tasks){
-      displayTasks.push(<Task key={i.id} body={i.body} is_complete={i.is_complete}/>)
+      let theTask = <Task
+        key={i.id}
+        id={i.id}
+        body={i.body}
+        loadTasks={this.loadTasks.bind(this)}
+        due_date={i.due_date}
+        completed_on={i.updated_at}
+        is_complete={i.is_complete}/>
+      if(i.is_complete){
+        completedTasks.push(theTask)
+      } else {
+        progressTasks.push(theTask)
+      }
     }
 
     return (
       <div className={styles.TaskList}>
-        {displayTasks}
+        <div>Tasks In Progress</div>
+        <div> {progressTasks} </div>
+        <br/>
+        <div>
+          <div>Completed Tasks</div>
+          {completedTasks}
+         </div>
       </div>
     )
   }
