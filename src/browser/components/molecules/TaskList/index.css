@@ -1,0 +1,9 @@
+
+.TaskList {
+  background-color: lightseagreen;
+  color: mintcream;
+  border: peru;
+  border-width: thick;
+  margin: 5px;
+  padding: 5px;
+}
