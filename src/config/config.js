@@ -8,7 +8,7 @@ const getEnv = () =>
 const envPath = '.env.' + getEnv()
 
 if ( fs.existsSync(envPath) ) {
-  require('dotenv').config({path: `../../${envPath}`})
+  require('dotenv').config({path: `${envPath}`})
 }
 
 const connectionString = process.env.DATABASE_URL
