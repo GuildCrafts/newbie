@@ -1,42 +1,40 @@
+.TaskDiv,
+.TaskComplete,
+.NearDue,
+.SoonDue,
+.PastDue {
+  color: mintcream;
+  padding: 3px;
+  border: azure 5px solid;
+  margin: 5px;
+  font-family: comic;
+  border-radius: 3px;
+}
+
 
 .TaskDiv {
   background-color: yellowgreen;
-  color: azure;
-  border: papayawhip 5px solid;
-  margin: 5px;
-  padding: 3px;
-  font-family: comic;
-  border-radius: 3px;
 }
 
 .TaskComplete {
   background-color: #ab8;
-  color: mintcream;
-  border: papayawhip 5px solid;
-  margin: 5px;
-  padding: 3px;
-  font-family: comic;
-  border-radius: 3px;
 }
 
-.NearComplete {
+.dog {
+  background-image: url("http://i0.kym-cdn.com/photos/images/facebook/000/234/765/b7e.jpg");
+}
+
+.NearDue {
   background-color: orange;
-  color: honeydew;
-  border: papayawhip 5px solid;
-  margin: 5px;
-  padding: 3px;
-  font-family: comic;
-  border-radius: 3px;
+}
+
+.SoonDue {
+  background-color: coral;
 }
 
 .PastDue {
-  background-color: orangered;
-  color: ghostwhite;
-  border: papayawhip 5px solid;
-  margin: 5px;
-  padding: 3px;
-  font-family: comic;
-  border-radius: 3px;
+  background-color: red;
+  border: yellow 5px solid;
 }
 
 .TaskBody {
@@ -45,4 +43,9 @@
   border: papayawhip 1px solid;
   padding: 2px 6px;
   margin: 3px;
+}
+
+.AlertDueDate {
+  color: yellow;
+  font-weight: bold;
 }

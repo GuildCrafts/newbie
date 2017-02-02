@@ -39,13 +39,32 @@ export default class Task extends Component {
   }
 
   taskStyles(){
-    if( this.props.is_complete ){ return styles.TaskComplete }
+    let ourStyles = {
+      mainDiv: styles.TaskDiv,
+      dueDateDiv: styles.DueDate
+    }
+    if( this.props.is_complete ){
+      ourStyles.mainDiv = styles.TaskComplete
+      return ourStyles
+    }
 
     let dueDate = moment(this.props.due_date)
-    if (dueDate.isBefore(moment())) { return styles.PastDue }
+    if (dueDate.isBefore(moment())) {
+      ourStyles.mainDiv = styles.PastDue
+      ourStyles.dueDateDiv = styles.AlertDueDate
+      return ourStyles
+     }
 
-    if( dueDate.subtract(1,'days').isBefore(moment())) { return styles.NearComplete }
-    return styles.TaskDiv
+    if( dueDate.subtract(1,'days').isBefore(moment())) {
+      ourStyles.mainDiv = styles.SoonDue
+      return ourStyles
+    }
+
+    if( dueDate.subtract(4,'days').isBefore(moment())) {
+      ourStyles.mainDiv = styles.NearDue
+      return ourStyles}
+
+    return ourStyles
   }
 
   render () {
@@ -59,14 +78,16 @@ export default class Task extends Component {
       : null
 
     let ourStyle = this.taskStyles()
+    let mainStyle = ourStyle.mainDiv
+    let dueStyle = ourStyle.dueDateDiv
 
     return (
       <div>
-        <div className={ourStyle}>
+        <div className={mainStyle}>
           <div className={styles.TaskBody}>
             {this.props.body}
           </div>
-          <div className={styles.DueDate}> Due Date: {dateString} </div>
+          <div className={dueStyle}> Due Date: {dateString} </div>
           <div>{completeDate}</div>
           {completeButton}
         </div>

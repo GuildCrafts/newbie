@@ -65,7 +65,7 @@ export default class TaskList extends Component {
         progressTasks.push(theTask)
       }
     }
-
+    
     return (
       <div className={styles.TaskList}>
         <div>Tasks In Progress</div>
