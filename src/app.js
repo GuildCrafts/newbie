@@ -8,7 +8,6 @@ import config from '../webpack.config'
 import task from './routes/task'
 import { getEnv }from './config/config'
 import auth from './init/auth'
-import cors from 'cors'
 const app = express()
 const compiler = webpack(config)
 
@@ -39,7 +38,6 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 auth(app)
 
-app.use(cors())
 app.use('/api/task', task)
 app.use('/noob', noob)
 app.use('/mentor', mentor)

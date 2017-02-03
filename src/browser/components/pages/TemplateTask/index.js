@@ -15,15 +15,28 @@ export default class TemplateTask extends Component {
       mentorTempTaskFormData: {name:'', desc:'', daysToComplete:''}
     }
     this.addTemplateTask = this.addTemplateTask.bind(this)
-    this.getTemplateTask = this.getTemplateTask.bind(this)
     this.updateTemplateTask = this.updateTemplateTask.bind(this)
+  }
+
+  getTemplateTask() {
+    fetch('/admin/template_task/get', {
+      method: 'get',
+      mode: 'cors',
+      credentials: 'same-origin'
+    }).then( results => {
+      return results.json()
+    }).then(tasks => {
+      this.setState({
+        currentTemplateTasks : tasks
+      })
+    })
   }
 
   addTemplateTask(event, role){
     const newTemplateTask = this.props.location.query
     newTemplateTask.role = role
     event.preventDefault()
-    fetch('/admin/template_task/add_template_task', {
+    fetch('/admin/template_task/add', {
       method: 'post',
       mode: 'cors',
       credentials: 'same-origin',
@@ -46,19 +59,10 @@ export default class TemplateTask extends Component {
 
   }
 
-  getTemplateTask() {
-    fetch('/admin/template_task/get_template_tasks', {
-      method: 'get',
-      mode: 'cors',
-      credentials: 'same-origin'
-    }).then( results => {
-      return results.json()
-    }).then(tasks => {
-      this.setState({
-        currentTemplateTasks : tasks
-      })
-    })
+  deteleTemplateTask(event) {
+    fetch('/admin/template_task/delete')
   }
+
 
   handleTempTaskFormFields(event, inputField) {
     if(inputField === 'name'){
@@ -93,29 +97,33 @@ export default class TemplateTask extends Component {
       className={'template_task_form__noob'}
       update={(event, inputField)=>this.handleTempTaskFormFields(event, inputField)}
       submit={(event)=>this.addTemplateTask(event, 'noob')}
-      exitForm={(event)=>this.toggleTempTaskNoobForm(event)}
+      exitForm={this.toggleTempTaskNoobForm.bind(this)}
     />
     :
-    <Button onClickEvent={(event)=>this.toggleTempTaskNoobForm(event)} text='Add Task'/>
+    <Button onClickEvent={this.toggleTempTaskNoobForm.bind(this)} text='Add Task'/>
 
     const mentorRenderedForm = this.state.showTemplateTaskForMentor?
-    <TemplateTaskForm
-      className={'template_task_form__mentor'}
-      update={(event, inputField)=>this.handleTempTaskFormFields(event, inputField)}
-      submit={(event)=>this.addTemplateTask(event, 'mentor')}
-      exitForm={(event)=>this.toggleTempTaskMentorForm(event)}
-    />
+      <TemplateTaskForm
+        className={'template_task_form__mentor'}
+        update={(event, inputField)=>this.handleTempTaskFormFields(event, inputField)}
+        submit={(event)=>this.addTemplateTask(event, 'mentor')}
+        exitForm={this.toggleTempTaskNoobForm.bind(this)}
+      />
     :
-    <Button onClickEvent={(event)=>this.toggleTempTaskMentorForm(event)} text='Add Task'/>
+    <Button onClickEvent={this.toggleTempTaskMentorForm.bind(this)} text='Add Task'/>
 
     return (
       <div>
-        <h1 className='fart'>Template Task for Noobs</h1>
-        {noobRenderedForm}
-        <List currentTemplateTasks={this.state.currentTemplateTasks.noob} onEditTask={this.updateTemplateTask}/>
-        <h1>Template Task for Mentors</h1>
-        {mentorRenderedForm}
-        <List currentTemplateTasks={this.state.currentTemplateTasks.mentor} />
+        <div className='container containter-noob'>
+        <h1>Template Task for Noobs</h1>
+          {noobRenderedForm}
+          <List currentTemplateTasks={this.state.currentTemplateTasks.noob} onEditTask={this.updateTemplateTask}/>
+        </div>
+        <div className='container containter-mentor'>
+          <h1>Template Task for Mentors</h1>
+          {mentorRenderedForm}
+          <List currentTemplateTasks={this.state.currentTemplateTasks.mentor} />
+        </div>
       </div>
     )
   }

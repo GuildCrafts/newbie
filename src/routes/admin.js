@@ -1,25 +1,18 @@
 import express from 'express'
 import path from 'path'
+import groupBy from 'lodash/groupBy'
 import * as templateTask from '../database/queries/template_task'
-import cors from 'cors'
 const router = express.Router()
 
-router.get('/template_task/get_template_tasks', function(req, res, next){
-  let templateTasks = { mentor: [], noob: [] }
+router.get('/template_task/get', function(req, res, next){
   templateTask.getAll()
   .then( results => {
-    for(let task of results){
-      if(task.user_role==='noob'){
-        templateTasks.noob.push(task)
-      } else if(task.user_role==='mentor') {
-        templateTasks.mentor.push(task)
-      }
-    }
+    const templateTasks = groupBy(results, task => task.user_role)
     res.json(templateTasks)
   })
 })
 
-router.post('/template_task/add_template_task', function(req, res, next){
+router.post('/template_task/add', function(req, res, next){
   templateTask.add(req.body)
   const newTemplateTask = {
     name: req.body.template_task_name,
@@ -32,4 +25,6 @@ router.post('/template_task/add_template_task', function(req, res, next){
     res.json(results[0])
   })
 })
+
+router.delete('/template_task/delete')
 export default router

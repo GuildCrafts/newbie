@@ -18,18 +18,18 @@ export default class InputField extends Component {
     const { label, isClicked, name, update } = this.props
     const inputField = {name}.name
     return (
-      <span className='form-input'>
+      <div className='form-group'>
         <label> {label} </label>
         <input
-          type='text'
+          type='txt'
+          className='form-control'
           name={`template_task_${name}`}
           value= {this.state.inputValue}
-          className='form-field'
           placeholder={name}
-          onChange={(event)=> this.handleInputChange(event, inputField)}
+          onChange={this.handleInputChange.bind(this, event, inputField)}
           >
         </input>
-      </span>
+      </div>
     )
   }
 }
