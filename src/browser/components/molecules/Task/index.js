@@ -21,7 +21,7 @@ export default class Task extends Component {
         'Content-Type': 'application/json',
          }),
       credentials: 'same-origin',
-      description: JSON.stringify({is_complete: true})
+      body : JSON.stringify({is_complete: true})
     }
     fetch( `/api/task/${this.props.id}`, options )
     .then( taskPromise => {
