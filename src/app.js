@@ -11,7 +11,7 @@ import auth from './init/auth'
 const app = express()
 const compiler = webpack(config)
 
-import admin from './routes/admin'
+import template_tasks from './routes/template_tasks'
 import mentor from './routes/mentor'
 import noob from  './routes/noob'
 
@@ -39,9 +39,9 @@ app.use(express.static(path.join(__dirname, 'public')))
 auth(app)
 
 app.use('/api/task', task)
-app.use('/noob', noob)
-app.use('/mentor', mentor)
-app.use('/admin', admin)
+app.use('/api/noob', noob)
+app.use('/api/mentor', mentor)
+app.use('/api/template_tasks', template_tasks)
 
 /* GET home page. */
 app.get('*', function(req, res, next) {

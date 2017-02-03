@@ -19,7 +19,7 @@ export default class TemplateTask extends Component {
   }
 
   getTemplateTask() {
-    fetch('/admin/template_task/get', {
+    fetch('/api/template_tasks', {
       method: 'get',
       mode: 'cors',
       credentials: 'same-origin'
@@ -36,7 +36,7 @@ export default class TemplateTask extends Component {
     const newTemplateTask = this.props.location.query
     newTemplateTask.role = role
     event.preventDefault()
-    fetch('/admin/template_task/add', {
+    fetch('/api/template_tasks', {
       method: 'post',
       mode: 'cors',
       credentials: 'same-origin',
@@ -60,7 +60,7 @@ export default class TemplateTask extends Component {
   }
 
   deteleTemplateTask(event) {
-    fetch('/admin/template_task/delete')
+    // fetch('/api/template_tasks')
   }
 
 

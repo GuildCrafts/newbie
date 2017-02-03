@@ -9,7 +9,7 @@ class Root extends Component {
     return (
       <Router history={browserHistory}>
         <Route path='/' component={Dashboard} />
-        <Route path='/admin/template_task' component={TemplateTask}/>
+        <Route path='/template_tasks' component={TemplateTask}/>
       </Router>
     )
   }

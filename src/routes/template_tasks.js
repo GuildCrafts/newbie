@@ -4,7 +4,8 @@ import groupBy from 'lodash/groupBy'
 import * as templateTask from '../database/queries/template_task'
 const router = express.Router()
 
-router.get('/template_task/get', function(req, res, next){
+router.get('/', function(req, res, next){
+  console.log('hello:')
   templateTask.getAll()
   .then( results => {
     const templateTasks = groupBy(results, task => task.user_role)
@@ -12,7 +13,7 @@ router.get('/template_task/get', function(req, res, next){
   })
 })
 
-router.post('/template_task/add', function(req, res, next){
+router.post('/', function(req, res, next){
   templateTask.add(req.body)
   const newTemplateTask = {
     name: req.body.template_task_name,
@@ -26,5 +27,8 @@ router.post('/template_task/add', function(req, res, next){
   })
 })
 
-router.delete('/template_task/delete')
+router.delete('/', function(req, res, next){
+  req.send('delete')
+})
+
 export default router
