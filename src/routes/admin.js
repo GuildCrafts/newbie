@@ -19,7 +19,7 @@ router.get('/template_task/get_template_tasks', function(req, res, next){
   })
 })
 
-router.post('/template_task/add_template_task/mentor', function(req, res, next){
+router.post('/template_task/add_template_task', function(req, res, next){
   templateTask.add(req.body)
   const newTemplateTask = {
     name: req.body.template_task_name,

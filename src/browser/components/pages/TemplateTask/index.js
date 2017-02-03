@@ -23,7 +23,7 @@ export default class TemplateTask extends Component {
     const newTemplateTask = this.props.location.query
     newTemplateTask.role = role
     event.preventDefault()
-    fetch('/admin/template_task/add_template_task/mentor', {
+    fetch('/admin/template_task/add_template_task', {
       method: 'post',
       mode: 'cors',
       credentials: 'same-origin',
