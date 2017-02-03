@@ -4,8 +4,6 @@ import styles from './index.css'
 const moment = require('moment')
 const utils = require( '../../../common/utils.js')
 
-
-
 export default class Task extends Component {
   constructor(props) {
     super(props)
@@ -40,22 +38,22 @@ export default class Task extends Component {
 
   taskStyles(task){
     let ourStyles = {
-      mainDiv: styles.TaskDiv,
+      mainStyle: styles.TaskDiv,
     }
     if( task.is_complete ){
-      ourStyles.mainDiv = styles.TaskComplete
+      ourStyles.mainStyle = styles.TaskComplete
       return ourStyles
     }
 
     let diffInDays = moment(task.due_date).diff(moment(), 'days')
     if (diffInDays < 0) {
-      ourStyles.mainDiv = styles.PastDue
+      ourStyles.mainStyle = styles.PastDue
       return ourStyles
     } else if( diffInDays <= 1) {
-      ourStyles.mainDiv = styles.SoonDue
+      ourStyles.mainStyle = styles.SoonDue
       return ourStyles
     } else if( diffInDays <= 3) {
-      ourStyles.mainDiv = styles.NearDue
+      ourStyles.mainStyle = styles.NearDue
       return ourStyles}
       else {
         return ourStyles
@@ -63,18 +61,21 @@ export default class Task extends Component {
   }
 
   render () {
-    let completeButton = !this.props.is_complete
-      ? <button className={styles.CompleteTask} ref='completeTask' onClick={this.isCompleteHandler.bind(this)}>Task Completed</button>
-      : null
-
     let dateString = utils.toStandardDate(this.props.due_date)
+    
     let completeDate = this.props.is_complete
       ? `Complete at: ${utils.toStandardDate(this.props.completed_on)}`
       : null
 
-    let ourStyle = this.taskStyles(this.props)
-    let mainStyle = ourStyle.mainDiv
-    let dueStyle = ourStyle.dueDateDiv
+    let completeButton = !this.props.is_complete
+      ? <button className={styles.CompleteTask} ref='completeTask' onClick={this.isCompleteHandler.bind(this)}>Task Completed</button>
+      : null
+
+    let dueDateJSX = !this.props.is_complete
+      ? <div> Due Date: {dateString} </div>
+      : null
+
+    let {mainStyle} = this.taskStyles(this.props)
 
     return (
       <div>
@@ -82,7 +83,7 @@ export default class Task extends Component {
           <div className={styles.TaskBody}>
             {this.props.body}
           </div>
-          <div className={dueStyle}> Due Date: {dateString} </div>
+          {dueDateJSX}
           <div>{completeDate}</div>
           {completeButton}
         </div>
