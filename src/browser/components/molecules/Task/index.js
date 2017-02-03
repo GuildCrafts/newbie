@@ -21,7 +21,7 @@ export default class Task extends Component {
         'Content-Type': 'application/json',
          }),
       credentials: 'same-origin',
-      body: JSON.stringify({is_complete: true})
+      description: JSON.stringify({is_complete: true})
     }
     fetch( `/api/task/${this.props.id}`, options )
     .then( taskPromise => {
@@ -80,8 +80,8 @@ export default class Task extends Component {
     return (
       <div>
         <div className={mainStyle}>
-          <div className={styles.TaskBody}>
-            {this.props.body}
+          <div className={styles.TaskDescription}>
+            {this.props.description}
           </div>
           {dueDateJSX}
           <div>{completeDate}</div>
