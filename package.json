@@ -7,6 +7,8 @@
     "start:dev": "./node_modules/.bin/nodemon ./bin/www --exec babel-node",
     "test": "mocha --require babel-register ./tests/**/*.js",
     "migrate": "babel-node ./node_modules/.bin/knex --knexfile ./src/database/knexfile.js migrate:latest",
+    "migrate:make": "babel-node ./node_modules/.bin/knex --knexfile ./src/database/knexfile.js migrate:make",
+    "migrate:rollback": "babel-node ./node_modules/.bin/knex --knexfile ./src/database/knexfile.js migrate:rollback",
     "webpack": "webpack --progress --colors --json",
     "heroku-postbuild": "webpack -p"
   },
