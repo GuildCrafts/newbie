@@ -47,7 +47,8 @@ export default class TaskList extends Component {
       <Task
         key={task.id}
         id={task.id}
-        body={task.body}
+        title={task.title}
+        description={task.description}
         fetchTasks={this.fetchTasks.bind(this)}
         due_date={task.due_date}
         completed_on={task.updated_at}
