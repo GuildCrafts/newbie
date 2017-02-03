@@ -53,6 +53,8 @@ describe('task', () => {
     start_date: '2017-02-26'
   }
 
+  const fakeTime = new Date('2017-03-05 00:00:00-08')
+
   beforeEach( () =>
     Promise.all([
       task.deleteAll(),
@@ -104,6 +106,8 @@ describe('task', () => {
   it('creates tasks for a user from a list of template tasks', () =>
     task.convertTemplateTasks(fakeTemplateTasks, fakeUser).then( convertedTasks => {
       expect(convertedTasks[0].template_task_id).to.equal(0)
+      expect(convertedTasks[0].body).to.equal('Give a senior Learner a foot massage for one hour')
+      expect(convertedTasks[0].due_date.getTime()).to.equal(fakeTime.getTime())
     })
   )
 

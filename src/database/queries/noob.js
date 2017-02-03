@@ -43,6 +43,8 @@ const graduate = github_handle => {
   })
 }
 
+const deleteAll = () =>
+  utilities.deleteAll( 'noob' )
 
 export {
   create,
@@ -51,5 +53,6 @@ export {
   deleteByHandle,
   getAllByStartDate,
   findAll,
-  graduate
+  graduate,
+  deleteAll
 }

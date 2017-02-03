@@ -39,7 +39,7 @@ describe('user', () => {
     it('return the all of the user data related to github_handle', () => {
       return user.create(newUser[1])
       .then(_ => {
-        user.findByHandle('Drake_fabulous')
+        return user.findByHandle('Drake_fabulous')
         .then(user => {
           expect(user.full_name).to.equal('Nice Person')
         })
@@ -51,7 +51,7 @@ describe('user', () => {
     it('updates the name of a user associated with github_handle', () => {
       return user.create(newUser[2])
       .then(_ => {
-        user.updateByHandle('mystery_solved', {full_name: 'Veronica Mars'})
+        return user.updateByHandle('mystery_solved', {full_name: 'Veronica Mars'})
         .then(user => {
           expect(user.full_name).to.equal('Veronica Mars')
         })
@@ -62,7 +62,7 @@ describe('user', () => {
   describe('deleteByHandle', () => {
     it('removes user associated with github_handle from database', () => {
       return user.deleteByHandle('Trump_Butt').then(_ => {
-        user.findByHandle('Trump_Butt')
+        return user.findByHandle('Trump_Butt')
         .then(empty => {
           expect(empty).to.be.equal( undefined )
         })

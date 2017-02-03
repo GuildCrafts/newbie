@@ -6,6 +6,8 @@ import bodyParser from 'body-parser'
 import webpack from 'webpack'
 import config from '../webpack.config'
 import { parseConfig, getEnv } from './config/config'
+import task from './routes/task'
+import { getEnv }from './config/config'
 import auth from './init/auth'
 
 const app = express()
@@ -20,7 +22,7 @@ if (getEnv() === 'development') {
       timings: true,
       chunks: false,
       chunkModules: false,
-      modules: false,
+      modules: false
     }
   }));
   app.use(require('webpack-hot-middleware')(compiler));
@@ -32,12 +34,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')))
 
-auth( app )
+auth(app)
+
+app.use('/api/task', task)
 
 /* GET home page. */
 app.get('*', function(req, res, next) {
   res.sendFile(path.join(__dirname, 'public/dist/index.html'))
 })
+
 
 // catch 404 and forward to error handler
 app.use( (req, res, next) => {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { Router, Route, Link, browserHistory } from 'react-router'
-import Dashboard from './Dashboard'
 import Signup from './signup/Signup'
+import Dashboard from './components/pages/Dashboard'
 
 class Root extends Component {
   render() {

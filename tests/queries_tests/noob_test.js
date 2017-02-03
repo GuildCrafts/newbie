@@ -40,7 +40,7 @@ describe('noob', () => {
   describe('create', () => {
     it('inserts noob into table', () => {
       return noob.create(newNoobs[0]).then(noobFound => {
-        expect(noobFound.full_name).to.equal('New Noobie')
+        return expect(noobFound[0].full_name).to.equal('New Noobie')
       })
     })
   })
@@ -49,7 +49,7 @@ describe('noob', () => {
     it('return the all of the noob data related to github_handle', () => {
       return noob.create(newNoobs[1])
         .then(_ => {
-          noob.findByHandle('Just_a_Shoe')
+          return noob.findByHandle('Just_a_Shoe')
           .then(noobFound => {
             expect(noobFound.full_name).to.equal('Shoe')
           })
@@ -61,7 +61,7 @@ describe('noob', () => {
     it('updates the name of a noob associated with github_handle', () => {
       return noob.create(newNoobs[2])
       .then(_ => {
-        noob.updateByHandle('dont_touch_my_hair', {full_name: 'Da REAL Solange'})
+        return noob.updateByHandle('dont_touch_my_hair', {full_name: 'Da REAL Solange'})
         .then(noobFound => {
           expect(noobFound.full_name).to.equal('Da REAL Solange')
         })
@@ -72,7 +72,7 @@ describe('noob', () => {
   describe('deleteByHandle', () => {
     it('removes noob associated with github_handle from database', () => {
       return noob.deleteByHandle('Just_a_Shoe').then(_ => {
-        noob.findByHandle('Just_a_Shoe')
+        return noob.findByHandle('Just_a_Shoe')
         .then(empty => {
           expect(empty).to.be.equal( undefined )
         })
@@ -103,7 +103,7 @@ describe('noob', () => {
   describe('graduate', () => {
     it('graduates a noob to mentor', () => {
       return noob.graduate('dont_touch_my_hair').then(_ => {
-        noob.findByHandle('dont_touch_my_hair').then(empty => {
+        return noob.findByHandle('dont_touch_my_hair').then(empty => {
           expect(empty).to.be.equal( undefined )
         })
       })
