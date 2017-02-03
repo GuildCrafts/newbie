@@ -18,7 +18,7 @@ export default class TaskList extends Component {
   }
 
   fetchTasks(){
-    const fetchDetails = {
+    const options = {
       method: 'GET',
       mode: 'cors',
       headers: new Headers({
@@ -27,7 +27,7 @@ export default class TaskList extends Component {
          }),
       credentials: 'same-origin'
     }
-    fetch('/api/task', fetchDetails)
+    fetch('/api/task', options)
     .then( data => {
       return data.json()
     })

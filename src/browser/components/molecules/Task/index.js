@@ -13,7 +13,7 @@ export default class Task extends Component {
   }
 
   isCompleteHandler( event ){
-    const completeTaskDetails = {
+    const options = {
       method: 'POST',
       mode: 'cors',
       headers: new Headers({
@@ -23,7 +23,7 @@ export default class Task extends Component {
       credentials: 'same-origin',
       body: JSON.stringify({is_complete: true})
     }
-    fetch( `/api/task/${this.props.id}`, completeTaskDetails )
+    fetch( `/api/task/${this.props.id}`, options )
     .then( taskPromise => {
       return taskPromise.json()
     })
@@ -62,7 +62,7 @@ export default class Task extends Component {
 
   render () {
     let dateString = utils.toStandardDate(this.props.due_date)
-    
+
     let completeDate = this.props.is_complete
       ? `Complete at: ${utils.toStandardDate(this.props.completed_on)}`
       : null
