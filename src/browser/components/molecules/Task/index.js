@@ -12,7 +12,6 @@ export default class Task extends Component {
     this.state = {
       complete: false
     }
-    this.isCompleteHandler = this.isCompleteHandler.bind(this)
   }
 
   isCompleteHandler( event ){
@@ -65,7 +64,7 @@ export default class Task extends Component {
 
   render () {
     let completeButton = !this.props.is_complete
-      ? <button className={styles.CompleteTask} ref='completeTask' onClick={this.isCompleteHandler}>Task Completed</button>
+      ? <button className={styles.CompleteTask} ref='completeTask' onClick={this.isCompleteHandler.bind(this)}>Task Completed</button>
       : null
 
     let dateString = utils.toStandardDate(this.props.due_date)
