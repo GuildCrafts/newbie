@@ -26,14 +26,16 @@ const findAll = table =>
     .table(table)
     .returning('*')
 
-const updateRecord = (table, column, data, attributes) =>
-  knex
+const updateRecord = (table, column, data, attributes) => {
+  attributes.updated_at = knex.raw('now()')
+  return knex
     .table(table)
     .where(column, data)
     .update(attributes)
     .returning('*')
-    .update({'updated_at': knex.raw('now()')})
+    //.update({'updated_at': knex.raw('now()')})
     .then(firstRecord)
+  }
 
 
 const deleteRecord = (table, column, data) =>

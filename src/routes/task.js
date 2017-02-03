@@ -9,9 +9,9 @@ router.get('/', (request, response, next) => {
 
   user.findByHandle(currentUser.handle)
   .then( returnedUser => {
-    task.getBy('user_id', returnedUser.id)
+    return task.getBy('user_id', returnedUser.id)
     .then( tasks => {
-      response.json(tasks)
+      return response.json(tasks)
     } )
     .catch( err => {
       console.log(`Error retrieving tasks for user ${currentUser.handle} from the db`, err);
@@ -28,7 +28,6 @@ router.post('/:task_id', (request, response, next) => {
   const { task_id } = request.params
   const { is_complete } = request.body
   const currentUser = request.user
-
   Promise.all([user.findByHandle(currentUser.handle), task.getBy('id',task_id)])
   .then( ([ promised_user, promised_task ]) => {
     if( promised_user.id === promised_task[0].user_id || promised_user.role === 'admin'){
