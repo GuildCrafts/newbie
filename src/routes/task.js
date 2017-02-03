@@ -30,8 +30,7 @@ router.post('/:task_id', (request, response, next) => {
   const currentUser = request.user
 
   Promise.all([user.findByHandle(currentUser.handle), task.getBy('id',task_id)])
-  .then( user_task => {
-    let [ promised_user, promised_task ] = user_task
+  .then( ([ promised_user, promised_task ]) => {
     if( promised_user.id === promised_task[0].user_id || promised_user.role === 'admin'){
       task.update( task_id, { is_complete })
       .then( promised_task => {
