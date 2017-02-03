@@ -3,6 +3,7 @@ import Layout from '../../molecules/Layout/index'
 import Task from '../Task/index'
 import styles from './index.css';
 const moment = require('moment')
+const _ = require('lodash')
 
 export default class TaskList extends Component {
   constructor (props) {
@@ -12,11 +13,11 @@ export default class TaskList extends Component {
     }
   }
 
-  componentWillMount(){
-    this.loadTasks()
+  componentDidMount(){
+    this.fetchTasks()
   }
 
-  loadTasks(){
+  fetchTasks(){
     const fetchDetails = {
       method: 'GET',
       mode: 'cors',
@@ -26,19 +27,13 @@ export default class TaskList extends Component {
          }),
       credentials: 'same-origin'
     }
-    fetch('http://noob.learnersguild.dev/api/task', fetchDetails)
+    fetch('/api/task', fetchDetails)
     .then( data => {
       return data.json()
     })
     .then( result => {
       this.setState({
-        tasks: result.sort((a,b) => {
-          if( moment(a.due_date).isBefore(b.due_date) ){
-            return -1
-          } else {
-            return 1
-          }
-        })
+        tasks: result.sort((a,b) => moment(a.due_date).isAfter(b.due_date) )
       })
     })
     .catch( err => {
@@ -47,33 +42,31 @@ export default class TaskList extends Component {
     })
   }
 
+  buildTasksJSX (tasks){
+    return tasks.map( task =>
+      <Task
+        key={task.id}
+        id={task.id}
+        body={task.body}
+        fetchTasks={this.fetchTasks.bind(this)}
+        due_date={task.due_date}
+        completed_on={task.updated_at}
+        is_complete={task.is_complete}/>)
+  }
+
   render() {
-    const progressTasks = []
-    const completedTasks = []
-    for (let i of this.state.tasks){
-      let theTask = <Task
-        key={i.id}
-        id={i.id}
-        body={i.body}
-        loadTasks={this.loadTasks.bind(this)}
-        due_date={i.due_date}
-        completed_on={i.updated_at}
-        is_complete={i.is_complete}/>
-      if(i.is_complete){
-        completedTasks.push(theTask)
-      } else {
-        progressTasks.push(theTask)
-      }
-    }
-    
+    const tasksGroupedByComplete = _.groupBy(this.state.tasks, (task) => task.is_complete)
+    const inProgressTasks = tasksGroupedByComplete.false || []
+    const completedTasks = tasksGroupedByComplete.true || []
+
     return (
       <div className={styles.TaskList}>
         <div>Tasks In Progress</div>
-        <div> {progressTasks} </div>
+        <div> {this.buildTasksJSX(inProgressTasks)} </div>
         <br/>
         <div>
           <div>Completed Tasks</div>
-          {completedTasks}
+          {this.buildTasksJSX(completedTasks)}
          </div>
       </div>
     )

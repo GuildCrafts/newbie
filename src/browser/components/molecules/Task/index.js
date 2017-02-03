@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Layout from '../../molecules/Layout/index'
 import styles from './index.css'
 const moment = require('moment')
+const utils = require( '../../../common/utils.js')
 
 
 
@@ -25,12 +26,12 @@ export default class Task extends Component {
       credentials: 'same-origin',
       body: JSON.stringify({is_complete: true})
     }
-    fetch( `http://noob.learnersguild.dev/api/task/${this.props.id}`, completeTaskDetails )
-    .then( resultPromise => {
-      return resultPromise.json()
+    fetch( `/api/task/${this.props.id}`, completeTaskDetails )
+    .then( taskPromise => {
+      return taskPromise.json()
     })
-    .then( result => {
-      this.props.loadTasks()
+    .then( task => {
+      this.props.fetchTasks()
     })
     .catch(err => {
       console.log('Error marking task complete', err);
@@ -38,33 +39,28 @@ export default class Task extends Component {
     })
   }
 
-  taskStyles(){
+  taskStyles(task){
     let ourStyles = {
       mainDiv: styles.TaskDiv,
-      dueDateDiv: styles.DueDate
     }
-    if( this.props.is_complete ){
+    if( task.is_complete ){
       ourStyles.mainDiv = styles.TaskComplete
       return ourStyles
     }
 
-    let dueDate = moment(this.props.due_date)
-    if (dueDate.isBefore(moment())) {
+    let diffInDays = moment(task.due_date).diff(moment(), 'days')
+    if (diffInDays < 0) {
       ourStyles.mainDiv = styles.PastDue
-      ourStyles.dueDateDiv = styles.AlertDueDate
       return ourStyles
-     }
-
-    if( dueDate.subtract(1,'days').isBefore(moment())) {
+    } else if( diffInDays <= 1) {
       ourStyles.mainDiv = styles.SoonDue
       return ourStyles
-    }
-
-    if( dueDate.subtract(4,'days').isBefore(moment())) {
+    } else if( diffInDays <= 3) {
       ourStyles.mainDiv = styles.NearDue
       return ourStyles}
-
-    return ourStyles
+      else {
+        return ourStyles
+    }
   }
 
   render () {
@@ -72,12 +68,12 @@ export default class Task extends Component {
       ? <button className={styles.CompleteTask} ref='completeTask' onClick={this.isCompleteHandler}>Task Completed</button>
       : null
 
-    let dateString = moment(this.props.due_date).format('MMMM DD YYYY')
+    let dateString = utils.toStandardDate(this.props.due_date)
     let completeDate = this.props.is_complete
-      ? `Complete at: ${moment(this.props.completed_on).format('MMMM DD YYYY')}`
+      ? `Complete at: ${utils.toStandardDate(this.props.completed_on)}`
       : null
 
-    let ourStyle = this.taskStyles()
+    let ourStyle = this.taskStyles(this.props)
     let mainStyle = ourStyle.mainDiv
     let dueStyle = ourStyle.dueDateDiv
 
