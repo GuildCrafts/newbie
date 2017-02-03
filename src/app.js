@@ -37,9 +37,12 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
+<<<<<<< HEAD
 auth(app)
 
 app.use('/api/task', task)
+=======
+>>>>>>> 0740a9c7f3bfc53f030c3b2448ed139abb278d49
 app.use(cors())
 
 app.use('/noob', noob)
