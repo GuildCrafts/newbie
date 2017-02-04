@@ -48,9 +48,6 @@ router.post('/:task_id', (request, response, next) => {
     console.log(`Error loading user ${currentUser.handle}, or Task id ${task_id}.`);
     throw err
   })
-
-
-
 })
 
 export default router
