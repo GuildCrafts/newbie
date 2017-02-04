@@ -33,7 +33,6 @@ const updateRecord = (table, column, data, attributes) => {
     .where(column, data)
     .update(attributes)
     .returning('*')
-    //.update({'updated_at': knex.raw('now()')})
     .then(firstRecord)
   }
 
