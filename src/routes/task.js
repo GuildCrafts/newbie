@@ -9,9 +9,9 @@ router.get('/', (request, response, next) => {
 
   user.findByHandle(currentUser.handle)
   .then( returnedUser => {
-    task.getBy('user_id', returnedUser.id)
+    return task.getBy('user_id', returnedUser.id)
     .then( tasks => {
-      response.json(tasks)
+      return response.json(tasks)
     } )
     .catch( err => {
       console.log(`Error retrieving tasks for user ${currentUser.handle} from the db`, err);
