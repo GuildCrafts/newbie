@@ -28,7 +28,6 @@ router.post('/:task_id', (request, response, next) => {
   const { task_id } = request.params
   const { is_complete } = request.body
   const currentUser = request.user
-
   Promise.all([user.findByHandle(currentUser.handle), task.getBy('id',task_id)])
   .then( ([ promised_user, promised_task ]) => {
     if( promised_user.id === promised_task[0].user_id || promised_user.role === 'admin'){
