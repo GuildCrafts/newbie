@@ -10,22 +10,22 @@ export default class Dashboard extends Component {
     }
   }
 
-  componentWillMount = () => {
+  componentWillMount() {
     this.getUser()
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     this.redirectToSignUp()
   }
 
-  redirectToSignUp = () => {
+  redirectToSignUp(){
     //check if user exists in db
     if ( !this.state.signedUp ) {
       browserHistory.push('/signup')
     }
   }
 
-  getUser = () => {
+  getUser(){
     //fetch current user from idm
     //set user in state
   }
