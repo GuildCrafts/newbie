@@ -7,13 +7,15 @@ import webpack from 'webpack'
 import config from '../webpack.config'
 import task from './routes/task'
 import { getEnv }from './config/config'
-
-
 import auth from './init/auth'
-
 const app = express()
-const compiler = webpack(config);
-if(getEnv() === 'development') {
+const compiler = webpack(config)
+
+import template_tasks from './routes/template_tasks'
+import mentor from './routes/mentor'
+import noob from  './routes/noob'
+
+if(getEnv() === 'development'){
   app.use(require('webpack-dev-middleware')(compiler, {
     publicPath: config.output.publicPath,
     serverSideRender: false,
@@ -25,22 +27,25 @@ if(getEnv() === 'development') {
       chunkModules: false,
       modules: false
     }
-  }));
-  app.use(require('webpack-hot-middleware')(compiler));
+  }))
+  app.use(require('webpack-hot-middleware')(compiler))
 }
 
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(logger('dev'))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 auth(app)
 
 app.use('/api/task', task)
+app.use('/api/noob', noob)
+app.use('/api/mentor', mentor)
+app.use('/api/template_tasks', template_tasks)
 
 /* GET home page. */
-app.get('/', function(req, res, next) {
-  res.sendFile(path.join(__dirname, 'public/dist/index.html'))
+app.get('*', function(req, res, next) {
+  res.sendFile(path.join(__dirname, 'browser/index.html'))
 })
 
 
