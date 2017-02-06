@@ -55,10 +55,6 @@ export default class TemplateTask extends Component {
     })
   }
 
-  updateTemplateTask(event) {
-
-  }
-
   deteleTemplateTask(event) {
     // fetch('/api/template_tasks')
   }
@@ -70,7 +66,7 @@ export default class TemplateTask extends Component {
     } else if(inputField === 'body'){
       this.props.location.query.template_task_body = event.target.value
     } else if(inputField === 'days_to_complete'){
-      this.props.location.query.template_task_days_to_complete = event.target.value
+      this.state.query.template_task_days_to_complete = event.target.value
     }
   }
 

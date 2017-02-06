@@ -8,7 +8,7 @@ export default class InputField extends Component {
     }
   }
 
-  handleInputChange(event, name){
+  onChange(event, name){
     this.setState({
       inputValue: event.target.value
     })
