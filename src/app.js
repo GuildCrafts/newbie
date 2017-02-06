@@ -7,7 +7,6 @@ import webpack from 'webpack'
 import config from '../webpack.config'
 import { parseConfig, getEnv } from './config/config'
 import task from './routes/task'
-import { getEnv }from './config/config'
 import auth from './init/auth'
 
 const app = express()
