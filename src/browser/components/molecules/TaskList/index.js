@@ -46,12 +46,8 @@ export default class TaskList extends Component {
     return tasks.map( task =>
       <Task
         key={task.id}
-        id={task.id}
-        body={task.body}
-        fetchTasks={this.fetchTasks.bind(this)}
-        due_date={task.due_date}
-        completed_on={task.updated_at}
-        is_complete={task.is_complete}/>)
+        task={task}
+        fetchTasks={this.fetchTasks.bind(this)}/>)
   }
 
   render() {

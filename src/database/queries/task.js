@@ -24,8 +24,9 @@ const convertTemplateTasks = ( templateTasks, user ) => {
   let tasks = templateTasks.map( templateTask => {
     const attributes = {
         user_id: user.id,
+        title: templateTask.title,
         is_complete: false,
-        body: templateTask.body,
+        description: templateTask.description,
         due_date: moment( user.start_date ).add( templateTask.days_to_complete, 'days' ),
         template_task_id: templateTask.id
       }
