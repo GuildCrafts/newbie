@@ -108,26 +108,3 @@ export default class Task extends Component {
     )
   }
 }
-
-//
-//   return (
-//     <div>
-//       <div className={mainStyle}>
-//         <div className={styles.TaskBody}>
-//           {this.props.task.description}
-//         </div>
-
-//         <div className={styles.dueDateDiv}>
-//           <div> {dueDateJSX}
-//             <div className={styles.NotifyWrapper}>
-//               {notifyCircle}
-//               <div className={styles.NotifyText}>{notifyText}</div><div>{completeDate}</div>
-//             </div>
-//           </div>
-//           {completeButton}
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
-// }
