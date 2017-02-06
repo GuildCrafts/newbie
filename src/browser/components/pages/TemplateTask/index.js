@@ -62,9 +62,9 @@ export default class TemplateTask extends Component {
 
   handleTempTaskFormFields(event, inputField) {
     if(inputField === 'name'){
-      this.props.location.query.template_task_name = event.target.value
+      this.state.location.query.template_task_name = event.target.value
     } else if(inputField === 'body'){
-      this.props.location.query.template_task_body = event.target.value
+      this.state.location.query.template_task_body = event.target.value
     } else if(inputField === 'days_to_complete'){
       this.state.query.template_task_days_to_complete = event.target.value
     }
