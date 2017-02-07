@@ -1,37 +1,34 @@
 import React, { Component } from 'react'
-import { browserHistory } from 'react-router'
+import ChooseStartDate from './ChooseStartDate'
 
-export default class Dashboard extends Component {
+export default class Signup extends Component {
   constructor() {
     super()
     this.state = {
-      user: null,
-      signedUp: true
+      showStartDate: false
     }
   }
 
-  componentWillMount() {
-    this.getUser()
+  toggleStartDate() {
+    this.setState({ showStartDate: !this.state.showStartDate })
   }
 
-  componentDidMount() {
-    this.redirectToSignUp()
+  signUpRole(role) {
+    console.log(`Signing up new ${role}!`)
   }
 
-  redirectToSignUp(){
-    //check if user exists in db
-    if ( !this.state.signedUp ) {
-      browserHistory.push('/signup')
-    }
-  }
+  render() {
+    const startDatePicker = this.state.showStartDate ?
+          <ChooseStartDate signUp={this.signUpRole}/> :
+          null
 
-  getUser(){
-    //fetch current user from idm
-    //set user in state
-  }
-
-  render () {
-
-    return (<div>Dashboard</div>)
+    return (
+        <div>
+        <div>Choose your role</div>
+        <div onClick={() => this.signUpRole('mentor')}>Mentor</div>
+        <div onClick={this.toggleStartDate.bind(this)}>Newbie</div>
+        {startDatePicker}
+      </div>
+    )
   }
 }
