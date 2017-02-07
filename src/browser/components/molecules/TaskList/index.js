@@ -42,12 +42,28 @@ export default class TaskList extends Component {
     })
   }
 
-  buildTasksJSX (tasks){
+  buildTasksJSX (tasks, isComplete){
     return tasks.map( task =>
       <Task
         key={task.id}
         task={task}
+        isComplete={isComplete}
         fetchTasks={this.fetchTasks.bind(this)}/>)
+  }
+
+  renderTasksPanel(tasks, isComplete, options) {
+    const tasksJSX = tasks.length ? this.buildTasksJSX(tasks, isComplete)
+                     : <div className='well'>No tasks due!</div>
+    return (
+      <div className='panel panel-info'>
+        <div className='panel-heading'>
+          <div className='panel-title'>{options.title}</div>
+        </div>
+        <div className='panel-body'>
+          <div className='list-group'>{tasksJSX}</div>
+        </div>
+      </div>
+    );
   }
 
   render() {
@@ -56,14 +72,10 @@ export default class TaskList extends Component {
     const completedTasks = tasksGroupedByComplete.true || []
 
     return (
-      <div className={styles.TaskList}>
-        <div>Tasks In Progress</div>
-        <div> {this.buildTasksJSX(inProgressTasks)} </div>
+      <div className=''>
+        {this.renderTasksPanel(inProgressTasks, false, {title: 'Tasks Due'})}
         <br/>
-        <div>
-          <div>Completed Tasks</div>
-          {this.buildTasksJSX(completedTasks)}
-         </div>
+        {this.renderTasksPanel(completedTasks, true, {title: 'Tasks Completed'})}
       </div>
     )
   }

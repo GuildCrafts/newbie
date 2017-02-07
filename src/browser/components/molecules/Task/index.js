@@ -36,32 +36,21 @@ export default class Task extends Component {
     })
   }
 
-  taskStyles(task){
-    let ourStyles = {
-      mainStyle: styles.TaskDiv,
-      notifyText: ''
-    }
-    if( task.is_complete ){
-      ourStyles.mainStyle = styles.TaskComplete
-      return ourStyles
-    }
-
+  computeDueDateLabel(task) {
     let diffInDays = moment(task.due_date).diff(moment(), 'days')
-    if (diffInDays < 0) {
-      ourStyles.mainStyle = styles.PastDue
-      ourStyles.notifyText = 'Past Due!'
-      return ourStyles
-    } else if( diffInDays <= 1) {
-      ourStyles.mainStyle = styles.SoonDue
-      ourStyles.notifyText = 'Due Immediately!'
-      return ourStyles
-    } else if( diffInDays <= 3) {
-      ourStyles.mainStyle = styles.NearDue
-      ourStyles.notifyText = 'Due Soon'
-      return ourStyles}
-      else {
-        return ourStyles
-    }
+    if (task.is_complete)
+      return null
+    else if (diffInDays < 0)
+      return {style:'danger',
+              text: 'past due'}
+    else if (diffInDays <= 1)
+      return {style:'danger',
+              text: 'due immediately'}
+    else if (diffInDays <= 3)
+      return {style:'warning',
+              text: 'due soon'}
+    else
+      return null
   }
 
   render () {
@@ -70,7 +59,7 @@ export default class Task extends Component {
     let dateString = utils.toStandardDate(task.due_date)
 
     let completeDate = task.is_complete
-      ? `Complete at: ${utils.toStandardDate(task.completed_on)}`
+      ? `Completed at: ${utils.toStandardDate(task.completed_on)}`
       : null
 
     let completeButton = !task.is_complete
@@ -81,30 +70,35 @@ export default class Task extends Component {
       ? <div> Due : {dateString} </div>
       : null
 
-    let {mainStyle, notifyText} = this.taskStyles(task)
+    let badgeConfig = this.computeDueDateLabel(task)
 
-    let notifyTextJSX = notifyText
-    let notifyCircle = <div className={styles.NotifyCircle}></div>
+    let badgeJSX;
+    if(badgeConfig) {
+      let classes = `label label-${badgeConfig.style}`
+      badgeJSX = (<span className={classes}>{badgeConfig.text}</span>)
+    }
+
+    let listClass = this.props.isComplete ?
+        'list-group-item list-group-item-success'
+        : 'list-group-item list-group-item';
 
     return (
-      <div>
-        <div className={mainStyle}>
+        <div className={listClass}>
           <div> <b>{task.title}</b>
-            <div className={styles.TaskDescription}>
+            <div className=''>
               {task.description}
             </div>
           </div>
-          <div className={styles.DueDateDiv}>
+          <div className=''>
             <div> {dueDateJSX}
-              <div className={styles.NotifyWrapper}>
-                {notifyCircle}
-                <div className={styles.NotifyText}>{notifyTextJSX}</div><div>{completeDate}</div>
+              <div className=''>
+                <span>{completeDate}</span>
+                {completeButton}
+                {badgeJSX}
                 </div>
             </div>
-            {completeButton}
           </div>
         </div>
-      </div>
     )
   }
 }
