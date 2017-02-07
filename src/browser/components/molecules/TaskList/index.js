@@ -53,7 +53,7 @@ export default class TaskList extends Component {
 
   renderTasksPanel(tasks, isComplete, options) {
     const tasksJSX = tasks.length ? this.buildTasksJSX(tasks, isComplete)
-                     : <div className='well'>No tasks due!</div>
+                     : <div className='well'>{options.noTasksMsg}</div>
     return (
       <div className='panel panel-info'>
         <div className='panel-heading'>
@@ -73,9 +73,9 @@ export default class TaskList extends Component {
 
     return (
       <div className=''>
-        {this.renderTasksPanel(inProgressTasks, false, {title: 'Tasks Due'})}
+        {this.renderTasksPanel(inProgressTasks, false, {title: 'Tasks Due', noTasksMsg: 'No tasks due!'})}
         <br/>
-        {this.renderTasksPanel(completedTasks, true, {title: 'Tasks Completed'})}
+        {this.renderTasksPanel(completedTasks, true, {title: 'Tasks Completed', noTasksMsg: 'No completed tasks.'})}
       </div>
     )
   }
