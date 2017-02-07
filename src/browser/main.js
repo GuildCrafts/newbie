@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { Router, Route, Link, browserHistory } from 'react-router'
-import Signup from './signup/Signup'
-import Dashboard from './components/pages/Dashboard'
+import Dashboard from './components/pages/Dashboard/index'
+import TemplateTask from './components/pages/TemplateTask/index'
 
 class Root extends Component {
   render() {
     return (
       <Router history={browserHistory}>
         <Route path='/' component={Dashboard} />
-        <Route path='/signup' component={Signup} />
+        <Route path='/template_tasks' component={TemplateTask}/>
       </Router>
     )
   }

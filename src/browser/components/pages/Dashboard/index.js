@@ -8,7 +8,6 @@ export default class Dashboard extends Component {
   render () {
     return (
         <Layout>
-          <div className={styles.red}>Dashboard</div>
           <NoobDashboard />
         </Layout>
     )
