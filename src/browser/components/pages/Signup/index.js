@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
-import ChooseStartDate from './ChooseStartDate'
+import CreateNewbieForm from '../../molecules/CreateNewbieForm/index'
+import styles from './index.css'
 
 export default class Signup extends Component {
   constructor() {
     super()
     this.state = {
-      showStartDate: false
+      renderNewbieForm: false
     }
   }
 
-  toggleStartDate() {
-    this.setState({ showStartDate: !this.state.showStartDate })
+  renderNewbieForm() {
+    this.setState({ renderNewbieForm: !this.state.renderNewbieForm })
   }
 
   signUpRole(role) {
@@ -18,16 +19,17 @@ export default class Signup extends Component {
   }
 
   render() {
-    const startDatePicker = this.state.showStartDate ?
-          <ChooseStartDate signUp={this.signUpRole}/> :
-          null
+    const renderNewbieForm = this.state.renderNewbieForm
+      ? <CreateNewbieForm />
+      : null
 
     return (
-        <div>
-        <div>Choose your role</div>
-        <button onClick={() => this.signUpRole('mentor')}>Mentor</button>
-        <button onClick={this.toggleStartDate.bind(this)}>Newbie</button>
-        {startDatePicker}
+        <div className={styles.roleForm}>
+        <div>Hi! Are you a: </div>
+        <button className='btn' onClick={this.renderNewbieForm.bind(this)}>New Learner</button>
+        <div>or</div>
+        <button className={styles.btn} onClick={() => this.signUpRole('mentor')}>Mentor</button>
+        {renderNewbieForm}
       </div>
     )
   }

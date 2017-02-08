@@ -1,32 +1,32 @@
 import React, { Component } from 'react'
-import ChooseStartDate from './ChooseStartDate'
+import CreateNewbie from './CreateNewbie'
 
 export default class Signup extends Component {
   constructor() {
     super()
     this.state = {
-      showStartDate: false
+      showNewbieForm: false
     }
   }
 
-  toggleStartDate = () =>
-    this.setState({ showStartDate: !this.state.showStartDate })
+  renderNewbieForm = () =>
+    this.setState({ showStartDate: !this.state.showNewbieForm })
 
   signUp = role => {
     console.log(`Signing up new ${role}!`)
   }
 
   render() {
-    const startDatePicker = this.state.showStartDate ?
-      <ChooseStartDate signUp={this.signUp}/> :
-      null
+    const newbieForm = this.state.showNewbieForm
+      ? <CreateNewbie />
+      : null
 
     return (
       <div>
         <div>Choose your role</div>
         <button onClick={() => this.signUp('mentor')}>Mentor</button>
-        <button onClick={this.toggleStartDate}>Noob</button>
-        {startDatePicker}
+        <button onClick={this.renderNewbieForm}>Noob</button>
+        {newbieForm}
       </div>
     )
   }
