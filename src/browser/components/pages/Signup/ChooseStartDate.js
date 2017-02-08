@@ -7,6 +7,7 @@ import DayPicker from 'react-day-picker'
 export default class ChooseStartDate extends Component {
   constructor(props) {
     super(props);
+    this.state = {calendar: false}
   }
 
   toggleStartDate() {

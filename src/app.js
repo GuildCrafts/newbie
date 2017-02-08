@@ -7,7 +7,6 @@ import webpack from 'webpack'
 import config from '../webpack.config'
 import { parseConfig, getEnv } from './config/config'
 import task from './routes/task'
-import { getEnv }from './config/config'
 import auth from './init/auth'
 const app = express()
 const compiler = webpack(config)
@@ -48,7 +47,7 @@ app.use('/api/mentor', mentor)
 app.use('/api/template_tasks', template_tasks)
 
 /* GET home page. */
-app.get('/', function(req, res, next) {
+app.get('*', function(req, res, next) {
   res.sendFile(path.join(__dirname, 'browser/index.html'))
 })
 
