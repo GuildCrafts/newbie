@@ -25,8 +25,8 @@ export default class Signup extends Component {
     return (
         <div>
         <div>Choose your role</div>
-        <div onClick={() => this.signUpRole('mentor')}>Mentor</div>
-        <div onClick={this.toggleStartDate.bind(this)}>Newbie</div>
+        <button onClick={() => this.signUpRole('mentor')}>Mentor</button>
+        <button onClick={this.toggleStartDate.bind(this)}>Newbie</button>
         {startDatePicker}
       </div>
     )

@@ -20,12 +20,12 @@ export default class ChooseStartDate extends Component {
 
   render() {
     const calendar = this.state.calendar ?
-          <DayPicker className={styles.daypicker} onDayClick={this.handleDayClick.bind(this)} />
+          <DayPicker onDayClick={this.handleDayClick.bind(this)} />
           : null
 
     return (
       <div>
-        <button onClick={this.toggleStartDate}>Choose your start date</button>
+        <button onClick={this.toggleStartDate.bind(this)}>Choose your start date</button>
         {calendar}
         <div onClick={() => this.props.signUp('noob')}>Submit</div>
         </div>
