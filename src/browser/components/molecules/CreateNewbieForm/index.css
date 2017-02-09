@@ -1,5 +1,23 @@
-.formfield {
-  background-color: #d9edf7
+.customBtnBlue {
+  display: block !important;
+  border-radius: 0px !important;
+  margin-top: 15px !important;
 }
+
+.customBtnBlueLow {
+  display: block !important;
+  border-radius: 0px !important;
+  margin-top: 65px !important;
+}
+
+.formfield {
+  margin-top: 20px !important;
+}
+
+.selectedDayText {
+  font-size: 2.5em;
+  margin-top: 55px;
+}
+
 /*color: #31708f;
 border-color: #bce8f1;*/

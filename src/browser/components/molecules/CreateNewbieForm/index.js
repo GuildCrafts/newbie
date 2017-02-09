@@ -8,23 +8,31 @@ export default class CreateNewbie extends Component {
     super(props)
     this.state = {
       pickStartDate: false,
-      selectedDay: new Date()
+      selectedDay: new Date(),
+      buttonDisplay: true,
+      dayConfirmationDisplay: false
     }
   }
 
   hideShowCalendar() {
     this.setState({ pickStartDate: !this.state.pickStartDate })
+    this.setState({ buttonDisplay: !this.state.buttonDisplay })
+  }
+
+  handleDayClick(event, day) {
+    this.setState({ pickStartDate: !this.state.pickStartDate })
+    this.setState({ selectedDay: day })
+    this.setState({ dayConfirmationDisplay: !this.state.dayConfirmationDisplay })
   }
 
   isDaySelected(day) {
     return DateUtils.isSameDay(day, this.state.selectedDay)
   }
 
-  handleDayClick(event, day) {
-    this.setState({ selectedDay: day })
-  }
-
   render() {
+    let comboButtonBlue = 'btn btn-primary btn-lg ' + styles.customBtnBlue
+    let comboButtonBlueLow = 'btn btn-primary btn-lg ' + styles.customBtnBlueLow
+
     const pickStartDate = this.state.pickStartDate
       ? <DayPicker
           onDayClick={this.handleDayClick.bind(this)}
@@ -32,14 +40,24 @@ export default class CreateNewbie extends Component {
         />
       : null
 
+    const hideShowButton = this.state.buttonDisplay
+      ? <button className={comboButtonBlueLow} onClick={this.hideShowCalendar.bind(this)}>What is your start date?</button>
+      : null
+
+    const selectedDayConfirmation = this.state.dayConfirmationDisplay
+      ? <div>
+          <p className={styles.selectedDayText}>
+            Selected day { this.state.selectedDay.toLocaleDateString() }
+          </p>
+          <button className={comboButtonBlue} onClick={() => this.props.signUp('noob')}>Submit</button>
+        </div>
+      : null
+
     return (
       <div className={styles.formfield}>
-        <button onClick={this.hideShowCalendar.bind(this)}>What is your start date?</button>
+        {hideShowButton}
         {pickStartDate}
-        <p>
-          The selected day is: { this.state.selectedDay.toLocaleDateString() }
-        </p>
-        <button onClick={() => this.props.signUp('noob')}>Submit</button>
+        {selectedDayConfirmation}
       </div>
     )
 
