@@ -5,22 +5,22 @@ describe('templateTask', () => {
 
   const fakeTemplateTasks = [
     {
-      name: 'Massage',
-      body: 'Give a senior Learner a foot massage for one hour',
+      title: 'Massage',
+      description: 'Give a senior Learner a foot massage for one hour',
       user_role: 'noob',
       days_to_complete: 7
     },
     {
-      name: 'Breath',
-      body: 'Take 7 deep breaths',
+      title: 'Breath',
+      description: 'Take 7 deep breaths',
       user_role: 'mentor',
       days_to_complete: 7
     }
   ]
 
   const fakeUpdate = {
-    name: 'Sing',
-    body: 'Sing for 7 hours with no bathroom breaks',
+    title: 'Sing',
+    description: 'Sing for 7 hours with no bathroom breaks',
     user_role: 'noob',
     days_to_complete: 3
   }
@@ -38,28 +38,28 @@ describe('templateTask', () => {
 
   it('should return all template tasks', () =>
     templateTask.getAll().then( templateTasks => {
-      expect( templateTasks[0].name ).to.equal('Massage')
-      expect( templateTasks[1].name ).to.equal('Breath')
+      expect( templateTasks[0].title ).to.equal('Massage')
+      expect( templateTasks[1].title ).to.equal('Breath')
     })
   )
 
-  it('gets a template task by name', () =>
-    templateTask.getBy('name', 'Massage').then( templateTasks =>
+  it('gets a template task by title', () =>
+    templateTask.getBy('title', 'Massage').then( templateTasks =>
       expect(templateTasks[0].user_role).to.equal('noob')
     )
   )
 
   it('gets a template task by days to complete', () => {
     return templateTask.getBy('days_to_complete', 7).then( templateTasks => {
-      expect(templateTasks[0].name).to.equal('Massage')
-      expect(templateTasks[1].name).to.equal('Breath')
+      expect(templateTasks[0].title).to.equal('Massage')
+      expect(templateTasks[1].title).to.equal('Breath')
     })
   })
 
   it('updates a template task', () =>
     templateTask.update(9, fakeUpdate).then( _ =>
       templateTask.getBy('id', 9).then( updatedTask =>
-        expect(updatedTask[0].name).to.equal('Sing')
+        expect(updatedTask[0].title).to.equal('Sing')
       )
     )
   )
