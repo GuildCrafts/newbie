@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import CreateNewbieForm from '../../molecules/CreateNewbieForm/index'
 import styles from './index.css'
-import BackButton from '../../atoms/BackButton'
 
 export default class Signup extends Component {
   constructor() {
@@ -25,7 +24,9 @@ export default class Signup extends Component {
     let comboButtonBlue = 'btn btn-primary btn-lg ' + styles.customBtnBlue
 
     const renderNewbieForm = this.state.renderNewbieForm
-      ? <CreateNewbieForm />
+      ? <CreateNewbieForm
+        render={this.renderNewbieForm.bind(this)}
+      />
       : null
 
     const mentorButton = this.state.mentorDisplay
@@ -39,7 +40,6 @@ export default class Signup extends Component {
 
     return (
       <div className={styles.page}>
-        <BackButton />
         <div className={styles.roleForm}>
           {mentorButton}
           {renderNewbieForm}
