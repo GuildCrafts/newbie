@@ -37,6 +37,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 
 app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'public/dist')))
 
 auth(app)
 
@@ -46,7 +47,7 @@ app.use('/api/mentor', mentor)
 app.use('/api/template_tasks', template_tasks)
 
 /* GET home page. */
-app.get('/', function(req, res, next) {
+app.get('*', function(req, res, next) {
   res.sendFile(path.join(__dirname, 'browser/index.html'))
 })
 
