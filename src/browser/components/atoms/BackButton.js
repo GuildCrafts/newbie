@@ -10,8 +10,8 @@ export default class BackButton extends Component{
   }
 
   middleware(func, length){
-    console.log("I'm logging:", this.props.clickFunc, this.props.passedLength)
-    this.props.clickFunc[this.props.passedLength]
+    console.log("I'm logging:", this.props.clickFunc[this.props.passedLength], this.props.passedLength)
+    this.props.backClick(this.props.clickFunc[this.props.passedLength])
   }
 
   render() {

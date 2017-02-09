@@ -15,37 +15,50 @@ export default class CreateNewbie extends Component {
       backFunction: [ this.props.render ],
       backIndex: 0
     }
+
+    this.backClick = this.backClick.bind(this)
+    this.hideShowCalendar = this.hideShowCalendar.bind(this)
+    this.handleDayClick = this.handleDayClick.bind(this)
   }
 
   backClick = callback => {
-    callback().bind(this)
     let tempArray = this.state.backFunction.slice(0)
     tempArray.pop()
-    this.setState({ backFunction: tempArray})
-    this.setState({ backIndex: backIndex-1 })
+    this.setState({
+      backFunction: tempArray,
+      backIndex: this.state.backIndex-1
+    })
+    callback(true)
   }
 
-  hideShowCalendar() {
-    this.setState({ pickStartDate: !this.state.pickStartDate })
-    this.setState({ buttonDisplay: !this.state.buttonDisplay })
+  hideShowCalendar(wentBack) {
+    this.setState({
+      pickStartDate: !this.state.pickStartDate,
+      buttonDisplay: !this.state.buttonDisplay,
+      backFunction: tempArray
+     })
 
-
-    let tempArray = this.state.backFunction.slice(0)
-    tempArray.push( this.backClick(this.hideShowCalendar) )
-    this.setState({ backFunction: tempArray })
-
-    this.setState({ backIndex: backIndex+1 })
+    if(!wentBack){
+      let tempArray = this.state.backFunction.slice()
+      tempArray.push( this.hideShowCalendar )
+      this.setState({ backIndex: this.state.backIndex+1 })
+    }
   }
 
   handleDayClick(event, day) {
-    this.setState({ pickStartDate: !this.state.pickStartDate })
-    this.setState({ selectedDay: day })
-    this.setState({ dayConfirmationDisplay: !this.state.dayConfirmationDisplay })
+    this.setState({
+      pickStartDate: !this.state.pickStartDate,
+      electedDay: day,
+      selectedDay: day,
+      dayConfirmationDisplay: !this.state.dayConfirmationDisplay
+    })
 
-    let tempArray = this.state.backFunction.slice(0)
-    tempArray.push( this.backClick(this.handleDayClick) )
-    this.setState({ backFunction: tempArray })
-    this.setState({ backIndex: backIndex+1 })
+    let tempArray = this.state.backFunction.slice()
+    tempArray.push( this.handleDayClick )
+    this.setState({
+      backFunction: tempArray,
+      backIndex: this.state.backIndex+1
+     })
   }
 
   isDaySelected(day) {
@@ -88,6 +101,7 @@ export default class CreateNewbie extends Component {
       <div>
           <div className={styles.buttonBack}>
             <BackButton
+              backClick={this.backClick}
               clickFunc={this.state.backFunction}
               passedLength={this.state.backIndex}
             />
@@ -99,6 +113,5 @@ export default class CreateNewbie extends Component {
         </div>
       </div>
     )
-
   }
 }
