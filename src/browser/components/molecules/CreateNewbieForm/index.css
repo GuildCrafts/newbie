@@ -19,10 +19,11 @@
   margin-top: 55px;
 }
 
-.buttonBack {
+.linkBack {
   position: fixed;
   left: 40px;
   top: 25px;
+  color: #7C7C7C;
 }
 
 /*color: #31708f;

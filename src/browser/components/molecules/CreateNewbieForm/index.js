@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import moment from 'moment'
 import DayPicker, { DateUtils } from 'react-day-picker'
-import BackButton from '../../atoms/BackButton'
 import styles from './index.css'
 
 export default class CreateNewbie extends Component {
@@ -74,9 +73,9 @@ export default class CreateNewbie extends Component {
 
     return (
       <div>
-          <div className={styles.buttonBack}>
-            <BackButton />
-          </div>
+        <div className={styles.linkBack}>
+          <a href='/signup'>Back</a>
+        </div>
         <div className={styles.formfield}>
           {hideShowButton}
           {pickStartDate}
