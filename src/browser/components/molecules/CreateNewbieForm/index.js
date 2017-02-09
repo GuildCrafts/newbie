@@ -15,34 +15,16 @@ export default class CreateNewbie extends Component {
       backFunction: [ this.props.render ],
       backIndex: 0
     }
-
-    this.backClick = this.backClick.bind(this)
-    this.hideShowCalendar = this.hideShowCalendar.bind(this)
-    this.handleDayClick = this.handleDayClick.bind(this)
-  }
-
-  backClick = callback => {
-    let tempArray = this.state.backFunction.slice(0)
-    tempArray.pop()
-    this.setState({
-      backFunction: tempArray,
-      backIndex: this.state.backIndex-1
-    })
-    callback(true)
   }
 
   hideShowCalendar(wentBack) {
     this.setState({
       pickStartDate: !this.state.pickStartDate,
-      buttonDisplay: !this.state.buttonDisplay,
-      backFunction: tempArray
+      buttonDisplay: !this.state.buttonDisplay
      })
+    this.setState({
 
-    if(!wentBack){
-      let tempArray = this.state.backFunction.slice()
-      tempArray.push( this.hideShowCalendar )
-      this.setState({ backIndex: this.state.backIndex+1 })
-    }
+    })
   }
 
   handleDayClick(event, day) {
@@ -50,14 +32,7 @@ export default class CreateNewbie extends Component {
       pickStartDate: !this.state.pickStartDate,
       electedDay: day,
       selectedDay: day,
-      dayConfirmationDisplay: !this.state.dayConfirmationDisplay
-    })
-
-    let tempArray = this.state.backFunction.slice()
-    tempArray.push( this.handleDayClick )
-    this.setState({
-      backFunction: tempArray,
-      backIndex: this.state.backIndex+1
+      dayConfirmationDisplay: !this.state.dayConfirmationDisplay,
      })
   }
 
@@ -100,11 +75,7 @@ export default class CreateNewbie extends Component {
     return (
       <div>
           <div className={styles.buttonBack}>
-            <BackButton
-              backClick={this.backClick}
-              clickFunc={this.state.backFunction}
-              passedLength={this.state.backIndex}
-            />
+            <BackButton />
           </div>
         <div className={styles.formfield}>
           {hideShowButton}
