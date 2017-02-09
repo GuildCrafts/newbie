@@ -14,6 +14,10 @@ export default class CreateNewbie extends Component {
     }
   }
 
+  signUpUser(role) {
+    console.log(`Signing up new ${role}!`)
+  }
+
   hideShowCalendar(wentBack) {
     this.setState({
       pickStartDate: !this.state.pickStartDate,
@@ -55,14 +59,14 @@ export default class CreateNewbie extends Component {
 
     const selectedDayConfirmation = this.state.dayConfirmationDisplay
       ? <div>
-          <p className={styles.selectedDayText}>
-            Selected day { this.state.selectedDay.toLocaleDateString() }
-          </p>
-          <button
-            className={comboButtonBlue}
-            onClick={() => this.props.signUp('noob')}>
-            Submit
-          </button>
+        <p className={styles.selectedDayText}>
+          Selected day { this.state.selectedDay.toLocaleDateString() }
+        </p>
+        <button
+          className={comboButtonBlue}
+          onClick={this.signUpUser.bind()}>
+          Submit
+        </button>
         </div>
       : null
 

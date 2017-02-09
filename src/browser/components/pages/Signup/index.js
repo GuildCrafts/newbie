@@ -11,13 +11,13 @@ export default class Signup extends Component {
     }
   }
 
+  signUpUser(role) {
+    console.log(`Signing up new ${role}!`)
+  }
+
   renderNewbieForm() {
     this.setState({ renderNewbieForm: !this.state.renderNewbieForm })
     this.setState({ mentorDisplay: !this.state.mentorDisplay})
-  }
-
-  signUpRole(role) {
-    console.log(`Signing up new ${role}!`)
   }
 
   render() {
@@ -34,7 +34,7 @@ export default class Signup extends Component {
           <p className={styles.messageText}>Hi! Are you a: </p>
           <button className={comboButtonBlue} onClick={this.renderNewbieForm.bind(this)}>New Learner</button>
           <p className={styles.messageText}>or</p>
-          <button className={comboButtonBlue} onClick={() => this.signUpRole('mentor')}>Mentor</button>
+          <button className={comboButtonBlue} onClick={this.signUpUser.bind()}>Mentor</button>
         </div>
       : null
 
