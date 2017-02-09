@@ -11,8 +11,6 @@ export default class CreateNewbie extends Component {
       selectedDay: new Date(),
       buttonDisplay: true,
       dayConfirmationDisplay: false,
-      backFunction: [ this.props.render ],
-      backIndex: 0
     }
   }
 
@@ -21,9 +19,6 @@ export default class CreateNewbie extends Component {
       pickStartDate: !this.state.pickStartDate,
       buttonDisplay: !this.state.buttonDisplay
      })
-    this.setState({
-
-    })
   }
 
   handleDayClick(event, day) {
@@ -46,7 +41,7 @@ export default class CreateNewbie extends Component {
     const pickStartDate = this.state.pickStartDate
       ? <DayPicker
           onDayClick={this.handleDayClick.bind(this)}
-          selectedDays={ this.isDaySelected.bind(this) }
+          selectedDays={this.isDaySelected.bind(this)}
         />
       : null
 
