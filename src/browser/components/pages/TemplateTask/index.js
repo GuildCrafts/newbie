@@ -15,7 +15,7 @@ export default class TemplateTask extends Component {
       mentorTempTaskFormData: {name:'', desc:'', daysToComplete:''}
     }
     this.addTemplateTask = this.addTemplateTask.bind(this)
-    this.updateTemplateTask = this.updateTemplateTask.bind(this)
+    this.deleteTemplateTask = this.deleteTemplateTask.bind(this)
   }
 
   getTemplateTask() {
@@ -32,51 +32,51 @@ export default class TemplateTask extends Component {
     })
   }
 
-  addTemplateTask(event, role){
-    const newTemplateTask = this.props.location.query
-    newTemplateTask.role = role
+  addTemplateTask(templateTask, event){
     event.preventDefault()
     fetch('/api/template_tasks', {
       method: 'post',
       mode: 'cors',
       credentials: 'same-origin',
-      body: JSON.stringify(newTemplateTask),
+      body: JSON.stringify(templateTask),
       headers: new Headers({
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       })
     }).then(res => {
-    }).then( newTask => {
       this.getTemplateTask()
       this.setState({
         showTemplateTaskForNoob: false,
-        showTemplateTaskForMentor: false,
+        showTemplateTaskForMentor: false
       })
     })
   }
 
-  deteleTemplateTask(event) {
-    // fetch('/api/template_tasks')
+  deleteTemplateTask(task) {
+    const confirmed = confirm('Are you sure you want to delete this?');
+    if(confirmed) {
+      fetch('/api/template_tasks/' + task.id, {
+        method: 'delete',
+        mode: 'cors',
+        credentials: 'same-origin'
+      }).then( results => {
+        return results.json();
+      }).then (res => {
+        this.getTemplateTask()
+        // add notification here
+        console.log(res);
+      });
+    };
   }
 
 
-  handleTempTaskFormFields(event, inputField) {
-    if(inputField === 'name'){
-      this.state.location.query.template_task_name = event.target.value
-    } else if(inputField === 'body'){
-      this.state.location.query.template_task_body = event.target.value
-    } else if(inputField === 'days_to_complete'){
-      this.state.query.template_task_days_to_complete = event.target.value
-    }
-  }
-
-  toggleTempTaskNoobForm(event) {
+  toggleTempTaskNoobForm() {
     this.setState({
       showTemplateTaskForNoob: !this.state.showTemplateTaskForNoob
     })
   }
 
-  toggleTempTaskMentorForm(event) {
+  toggleTempTaskMentorForm() {
     this.setState({
       showTemplateTaskForMentor: !this.state.showTemplateTaskForMentor
     })
@@ -86,40 +86,43 @@ export default class TemplateTask extends Component {
     this.getTemplateTask()
   }
 
-
-  render () {
-    const noobRenderedForm = this.state.showTemplateTaskForNoob ?
-    <TemplateTaskForm
-      className={'template_task_form__noob'}
-      update={(event, inputField)=>this.handleTempTaskFormFields(event, inputField)}
-      submit={(event)=>this.addTemplateTask(event, 'noob')}
-      exitForm={this.toggleTempTaskNoobForm.bind(this)}
-    />
-    :
-    <Button onClickEvent={this.toggleTempTaskNoobForm.bind(this)} text='Add Task'/>
-
-    const mentorRenderedForm = this.state.showTemplateTaskForMentor?
-      <TemplateTaskForm
-        className={'template_task_form__mentor'}
-        update={(event, inputField)=>this.handleTempTaskFormFields(event, inputField)}
-        submit={(event)=>this.addTemplateTask(event, 'mentor')}
-        exitForm={this.toggleTempTaskNoobForm.bind(this)}
-      />
-    :
-    <Button onClickEvent={this.toggleTempTaskMentorForm.bind(this)} text='Add Task'/>
-
+  renderTemplateTasks(tasks, options){
+    const templateTaskFormJSX = this.addButtonOrForm(options.showForm, options.toggleFormFn, options.userRole)
     return (
+      <div className='panel panel-info'>
+        <div className='panel-heading'>{options.heading}</div>
+        <div className='panel-body'>
+          <List currentTemplateTasks={tasks} deleteTaskCallback={this.deleteTemplateTask}/>
+        </div>
+        {templateTaskFormJSX}
+      </div>
+    )
+  }
+
+  addButtonOrForm(showForm, toggleFn, userRole) {
+    return showForm ?
+          <TemplateTaskForm
+            userRole={userRole}
+            update={(event, inputField) => this.handleTempTaskFormFields(event, inputField)}
+            onSubmit={this.addTemplateTask}
+            exitForm={toggleFn.bind(this)}
+           />
+           : <Button onClickEvent={toggleFn.bind(this)} text='Add Task'/>
+  }
+
+  render() {
+    return(
       <div>
-        <div className='container containter-noob'>
-        <h1>Template Task for Noobs</h1>
-          {noobRenderedForm}
-          <List currentTemplateTasks={this.state.currentTemplateTasks.noob} onEditTask={this.updateTemplateTask}/>
-        </div>
-        <div className='container containter-mentor'>
-          <h1>Template Task for Mentors</h1>
-          {mentorRenderedForm}
-          <List currentTemplateTasks={this.state.currentTemplateTasks.mentor} />
-        </div>
+        {this.renderTemplateTasks(this.state.currentTemplateTasks.noob,
+                                  {heading: 'Newbie Template Tasks',
+                                   showForm: this.state.showTemplateTaskForNoob,
+                                   toggleFormFn: this.toggleTempTaskNoobForm,
+                                   userRole: 'noob'})}
+        {this.renderTemplateTasks(this.state.currentTemplateTasks.mentor,
+                                  {heading: 'Mentor Template Tasks',
+                                   showForm: this.state.showTemplateTaskForMentor,
+                                   toggleFormFn: this.toggleTempTaskMentorForm,
+                                   userRole: 'mentor'})}
       </div>
     )
   }

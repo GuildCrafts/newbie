@@ -10,3 +10,7 @@
 span{
   padding: 20px;
 }
+
+.tableWhiteSpace {
+  white-space: pre;
+}
