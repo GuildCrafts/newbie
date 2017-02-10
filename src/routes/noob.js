@@ -10,7 +10,10 @@ router.get('/:githubHandle', function(request, response, next){
   const currentUserHandle = request.user.handle
   noob.findByHandle( currentUserHandle )
   .then( newbie => {
-    return response.json(newbie)
+    users.findNoobsMentor( newbie.mentor_id )
+    .then( mentor => {
+      return response.json({newbie, mentor })
+    })
   })
   .catch( err => {
     console.log(`Error retrieving newbie ${currentUserHandle} from the db`, err);

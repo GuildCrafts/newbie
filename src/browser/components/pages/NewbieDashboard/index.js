@@ -2,11 +2,15 @@ import React, { Component } from 'react'
 import GenericDashboard from '../GenericDashboard/index'
 import { fetchURL, toStandardDate } from '../../../common/utils'
 import moment from 'moment'
+import styles from './index.css'
 
 export default class NewbieDashboard extends Component {
   constructor(props){
     super(props)
-      this.state = { currentNewbie: [] }
+      this.state = {
+        currentNewbieInfo: {},
+        mentor: {}
+      }
   }
 
   componentWillMount(){
@@ -15,20 +19,31 @@ export default class NewbieDashboard extends Component {
 
   fetchCurrentUser(){
     fetchURL('/api/noob/:githubHandle')
-      .then(currentNewbie => {
-        this.setState({currentNewbie: currentNewbie})
-        console.log( "!!!!!!", this.state )
+      .then(currentNewbieInfo => {
+        this.setState({
+          currentNewbieInfo: currentNewbieInfo,
+          mentor: currentNewbieInfo.mentor
+        })
       })
   }
 
   render() {
-    const newbie = this.state.currentNewbie
-    const startDate = toStandardDate(newbie.start_date)
+    const startDate = toStandardDate(this.state.currentNewbieInfo.start_date)
+    const mentor = this.state.mentor.full_name
+      ? <h4>Mentor: {this.state.mentor.full_name}</h4>
+      : null
+
     return (
       <div>
-        <h3>Welcome To Learners Guild {newbie.full_name}!</h3>
-        <h3>Your Start Date: {startDate}</h3>
+        <div className={styles.header}>
+          <h1>Welcome To Learners Guild!</h1>
+          <div className={styles.newbieInfo}>
+            <h4>Start Date: {startDate}</h4>
+            {mentor}
+          </div>
+        </div>
         <GenericDashboard />
-      </div>)
+      </div>
+    )
   }
 }
