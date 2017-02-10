@@ -14,3 +14,18 @@ span{
 .tableWhiteSpace {
   white-space: pre;
 }
+
+.headers {
+  display: flex;
+  flex-direction: row;
+}
+
+.headerItem {
+  display: flex;
+  flex-direction: row;
+}
+
+.task {
+  display: flex;
+  flex-direction: column;
+}
