@@ -31,7 +31,7 @@ module.exports = {
       {test:/\.js$/, loaders: ['react-hot', 'babel-loader'], include: `${rootDir}/src/browser`},
       {include:  /\.json$/, loaders: ['json-loader']},
       {
-        test: /\.css$/,
+        test: /\.css$/, use: [ 'style-loader', 'css-loader'],
         loader: ExtractTextPlugin.extract('css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'),
         include: __dirname + '/src/browser'
       }

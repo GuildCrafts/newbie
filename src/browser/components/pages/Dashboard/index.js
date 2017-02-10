@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Layout from '../../molecules/Layout/index'
+import styles from './index.css'
 import GenericDashboard from '../GenericDashboard/index'
 import MentorDashboard from '../MentorDashboard/index'
 import TemplateTask from '../TemplateTask/index'
