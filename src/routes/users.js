@@ -17,7 +17,7 @@ router.get('/current_user', function(req, res){
   } else {
     users.findByHandle(githubHandle)
     .then(user => {
-      res.json(user)
+      res.json(user || {})
     })
   }
 })

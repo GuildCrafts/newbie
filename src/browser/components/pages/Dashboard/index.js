@@ -4,6 +4,7 @@ import styles from './index.css'
 import GenericDashboard from '../GenericDashboard/index'
 import MentorDashboard from '../MentorDashboard/index'
 import TemplateTask from '../TemplateTask/index'
+import {browserHistory} from 'react-router'
 
 export default class Dashboard extends Component {
 
@@ -23,6 +24,7 @@ export default class Dashboard extends Component {
     }
     fetch('/api/users/current_user', options)
       .then( response => {
+        console.log("!!!!!!!!!", response)
         return response.json()
       })
       .then( user => {
@@ -44,6 +46,8 @@ export default class Dashboard extends Component {
       return <MentorDashboard />
     } else if (user.role === 'noob') {
       return <GenericDashboard title='Newbie Dashboard' />
+    } else {
+      browserHistory.push('/signup')
     }
   }
 

@@ -4,32 +4,34 @@ import CreateNewbieForm from '../../molecules/CreateNewbieForm/index'
 import styles from './index.css'
 
 export default class Signup extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
-      renderNewbieForm: false,
+      updateNewbieFormState: false,
       mentorDisplay: true
     }
   }
 
-  renderNewbieForm() {
-    this.setState({ renderNewbieForm: !this.state.renderNewbieForm })
-    this.setState({ mentorDisplay: !this.state.mentorDisplay})
+  updateNewbieFormState() {
+    this.setState({
+      updateNewbieFormState: !this.state.updateNewbieFormState,
+      mentorDisplay: !this.state.mentorDisplay
+    })
   }
 
   render() {
     let comboButtonBlue = 'btn btn-primary btn-lg ' + styles.customBtnBlue
 
-    const renderNewbieForm = this.state.renderNewbieForm
+    const updateNewbieFormState = this.state.updateNewbieFormState
       ? <CreateNewbieForm
-        render={this.renderNewbieForm.bind(this)}
+        render={this.updateNewbieFormState.bind(this)}
       />
       : null
 
     const mentorButton = this.state.mentorDisplay
       ? <div>
           <p className={styles.messageText}>Hi! Are you a: </p>
-          <button className={comboButtonBlue} onClick={this.renderNewbieForm.bind(this)}>New Learner</button>
+          <button className={comboButtonBlue} onClick={this.updateNewbieFormState.bind(this)}>New Learner</button>
           <p className={styles.messageText}>or</p>
           <button className={comboButtonBlue} onClick={ signUpUser.bind( this, '/api/users', {role: 'mentor'}) }>Mentor</button>
         </div>
@@ -39,7 +41,7 @@ export default class Signup extends Component {
       <div className={styles.page}>
         <div className={styles.roleForm}>
           {mentorButton}
-          {renderNewbieForm}
+          {updateNewbieFormState}
         </div>
       </div>
     )
