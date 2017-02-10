@@ -24,7 +24,6 @@ export default class Dashboard extends Component {
     }
     fetch('/api/users/current_user', options)
       .then( response => {
-        console.log("!!!!!!!!!", response)
         return response.json()
       })
       .then( user => {

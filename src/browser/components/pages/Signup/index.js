@@ -14,7 +14,7 @@ export default class Signup extends Component {
 
   updateNewbieFormState() {
     this.setState({
-      updateNewbieFormState: !this.state.updateNewbieFormState,
+      newbieForm: !this.state.newbieForm,
       mentorDisplay: !this.state.mentorDisplay
     })
   }
@@ -22,7 +22,7 @@ export default class Signup extends Component {
   render() {
     let comboButtonBlue = 'btn btn-primary btn-lg ' + styles.customBtnBlue
 
-    const updateNewbieFormState = this.state.updateNewbieFormState
+    const updateNewbieFormState = this.state.newbieForm
       ? <CreateNewbieForm
         render={this.updateNewbieFormState.bind(this)}
       />
