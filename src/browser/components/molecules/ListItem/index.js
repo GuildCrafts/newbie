@@ -15,10 +15,14 @@ export default class ListItem extends Component {
     this.setState({ editmode: !this.state.editmode })
   }
 
+  submitEdits(){
+    
+  }
+
   render() {
     const task = this.props.task
     let comboButton = 'btn btn-default ' + styles.button
-    let comboContainer = 'container ' + styles.listitem
+    // let comboContainer = 'container ' + styles.listitem
 
     const taskTitle = this.state.editmode
       ? <InputField value={task.title} />
@@ -33,7 +37,7 @@ export default class ListItem extends Component {
       : task.days_to_complete
 
     return (
-      <div className={comboContainer}>
+      <div className='container'>
         <div className='col-md-2'>{taskTitle}</div>
         <div className='col-md-5'>{taskDescription}</div>
         <div className='col-md-1'>{taskDaysToComplete}</div>
@@ -46,8 +50,13 @@ export default class ListItem extends Component {
             aria-label="Left Align" onClick={this.enableEditMode.bind(this)}>
             Edit
           </button>
+          <button type="button" className={comboButton}
+            aria-label="Left Align" onClick={this.submitEdits.bind(this)}>
+            Submit
+          </button>
           <div className='col-md-3'></div>
         </div>
+        <div className={styles.bottomborder}></div>
       </div>
     )
   }
