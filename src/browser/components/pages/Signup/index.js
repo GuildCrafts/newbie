@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { signUpUser } from '../../../common/requests'
 import CreateNewbieForm from '../../molecules/CreateNewbieForm/index'
 import styles from './index.css'
 
@@ -9,10 +10,6 @@ export default class Signup extends Component {
       renderNewbieForm: false,
       mentorDisplay: true
     }
-  }
-
-  signUpUser(role) {
-    console.log(`Signing up new ${role}!`)
   }
 
   renderNewbieForm() {
@@ -34,7 +31,7 @@ export default class Signup extends Component {
           <p className={styles.messageText}>Hi! Are you a: </p>
           <button className={comboButtonBlue} onClick={this.renderNewbieForm.bind(this)}>New Learner</button>
           <p className={styles.messageText}>or</p>
-          <button className={comboButtonBlue} onClick={this.signUpUser.bind()}>Mentor</button>
+          <button className={comboButtonBlue} onClick={ signUpUser.bind( this, '/api/users', {role: 'mentor'}) }>Mentor</button>
         </div>
       : null
 
