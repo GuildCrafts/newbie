@@ -29,4 +29,9 @@ router.post('/', (request, response, next) => {
   })
 })
 
+router.get('/unassigned_mentor', function(req, res) {
+  noob.unassignedMentor()
+  .then(noobs => res.json(noobs));
+});
+
 export default router

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Layout from '../../molecules/Layout/index'
 import styles from './index.css'
 import GenericDashboard from '../GenericDashboard/index'
+import MentorDashboard from '../MentorDashboard/index'
 import TemplateTask from '../TemplateTask/index'
 
 export default class Dashboard extends Component {
@@ -40,7 +41,7 @@ export default class Dashboard extends Component {
                 <TemplateTask />
               </div>)
     } else if (user.role === 'mentor') {
-      return <GenericDashboard title='Mentor Dashboard' />
+      return <MentorDashboard />
     } else if (user.role === 'noob') {
       return <GenericDashboard title='Newbie Dashboard' />
     }

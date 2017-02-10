@@ -12,7 +12,7 @@ const app = express()
 const compiler = webpack(config)
 
 import template_tasks from './routes/template_tasks'
-import mentor from './routes/mentor'
+import mentors from './routes/mentors'
 import noob from  './routes/noob'
 import users from './routes/users'
 
@@ -44,7 +44,7 @@ auth(app)
 
 app.use('/api/task', task)
 app.use('/api/noob', noob)
-app.use('/api/mentor', mentor)
+app.use('/api/mentors', mentors)
 app.use('/api/template_tasks', template_tasks)
 app.use('/api/users', users)
 
