@@ -2,16 +2,20 @@ import React, { Component } from 'react'
 
 export default class InputField extends Component {
 
+  constructor(props){
+    super(props)
+  }
+
   render () {
-    const { label, name } = this.props
     return (
       <div className='form-group'>
-        <label> {label} </label>
+        <label> {this.props.label} </label>
         <input
           type='text'
           className='form-control'
-          name={name}
-          onChange={this.props.onChange.bind(this)}
+          name={this.props.name}
+          // onChange={this.props.onChange.bind(this)}
+          value={this.props.value}
           >
         </input>
       </div>
