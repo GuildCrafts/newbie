@@ -64,7 +64,7 @@ export default class CreateNewbie extends Component {
         </p>
         <button
           className={comboButtonBlue}
-          onClick={this.signUpUser.bind()}>
+          onClick={this.signUpUser.bind(this)}>
           Submit
         </button>
         </div>
