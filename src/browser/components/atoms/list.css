@@ -7,25 +7,20 @@
 .templateTaskWrapper{
   margin: 10px;
 }
-span{
-  padding: 20px;
-}
 
 .tableWhiteSpace {
   white-space: pre;
 }
 
-.headers {
-  display: flex;
-  flex-direction: row;
+.row {
+  display: block;
 }
 
-.headerItem {
-  display: flex;
-  flex-direction: row;
+.row:first-of-type{
+  padding: 20px 0px;
 }
 
-.task {
-  display: flex;
-  flex-direction: column;
+.tableHeader {
+  font-weight: bold;
+  font-size: 1.5em;
 }
