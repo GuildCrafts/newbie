@@ -16,6 +16,7 @@ router.get('/current_user', function(req, res){
     res.json(fakeAdminUser(githubHandle))
   } else {
     users.findByHandle(githubHandle)
+    console.log("!!!!!!!!!!!!!!", user)
     .then(user => {
       res.json(user || {})
     })
