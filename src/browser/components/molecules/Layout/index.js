@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 export default class Layout extends Component {
   render() {
-    return <div>
+    return <div className='container'>
       <div></div>
       <div className='layout-content'>
         {this.props.children}
