@@ -1,12 +1,11 @@
 import { browserHistory } from 'react-router'
 
-const signUpUser = ( url, body ) => {
-  event.preventDefault()
+const signUpUser = ( url, userParams ) => {
   fetch( url, {
     method: 'post',
     mode: 'cors',
     credentials: 'same-origin',
-    body: JSON.stringify( body ),
+    body: JSON.stringify( userParams ),
     headers: new Headers({
       'Content-Type': 'application/json',
       'Accept': 'application/json'
@@ -15,7 +14,7 @@ const signUpUser = ( url, body ) => {
     console.log("new user created")
     browserHistory.push('/')
   })
-  console.log(`Signing up new ${body.role}!`)
+  console.log(`Signing up new ${userParams.role}!`)
 }
 
 export { signUpUser }
