@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import moment from 'moment'
 import DayPicker, { DateUtils } from 'react-day-picker'
+import { signUpUser } from '../../../common/requests'
 import styles from './index.css'
 
 export default class CreateNewbie extends Component {
@@ -12,10 +13,6 @@ export default class CreateNewbie extends Component {
       buttonDisplay: true,
       dayConfirmationDisplay: false,
     }
-  }
-
-  signUpUser(role) {
-    console.log(`Signing up new ${role}!`)
   }
 
   hideShowCalendar(wentBack) {
@@ -64,7 +61,7 @@ export default class CreateNewbie extends Component {
         </p>
         <button
           className={comboButtonBlue}
-          onClick={this.signUpUser.bind()}>
+          onClick={ signUpUser.bind( this, '/api/noob', {role: 'noob', start_date: this.state.selectedDay })}>
           Submit
         </button>
         </div>
