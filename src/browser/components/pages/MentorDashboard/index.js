@@ -6,7 +6,7 @@ import {fetchURL} from '../../../common/utils'
 export default class MentorDashboard extends Component {
   constructor(props){
     super(props)
-    this.state = {unassignedNewbies: []}
+    this.state = {unassignedNewbies: {}}
     this.fetchUnassignedNewbies = this.fetchUnassignedNewbies.bind(this)
   }
 

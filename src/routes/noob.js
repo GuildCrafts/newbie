@@ -6,8 +6,16 @@ import * as tasks from '../database/queries/task'
 
 const router = express.Router()
 
-router.get('/', function(req, res, next){
-  res.send('noob')
+router.get('/:githubHandle', function(request, response, next){
+  const currentUserHandle = request.user.handle
+  noob.findByHandle( currentUserHandle )
+  .then( newbie => {
+    return response.json(newbie)
+  })
+  .catch( err => {
+    console.log(`Error retrieving newbie ${currentUserHandle} from the db`, err);
+    throw err
+  })
 })
 
 router.post('/', (request, response, next) => {

@@ -26,6 +26,9 @@ const findAll = () =>
 const unassignedMentor = () =>
   utilities.findAllWhere('noob', 'mentor_id', null)
 
+const findNoobsMentorById = mentor_id =>
+  utilities.findRecord('users', 'id', mentor_id )
+
 const graduate = github_handle => {
   return knex.transaction((t) => {
     return knex('noob')
