@@ -1,6 +1,19 @@
 import React, { Component } from "react"
 import styles from './list.css'
-export default class List extends Component{
+
+export default class List extends Component {
+
+  constructor(props){
+    super(props)
+    this.state = {
+      editmode: false
+    }
+  }
+
+  toggleEditMode(){
+    this.setState({ editmode: !this.state.editmode })
+  }
+
 
   render() {
     return(
@@ -23,6 +36,10 @@ export default class List extends Component{
               <button type="button" className="btn btn-default"
                 aria-label="Left Align" onClick={this.props.deleteTaskCallback.bind(this, task)}>
                 Delete
+              </button>
+              <button type="button" className="btn btn-default"
+                aria-label="Left Align" onClick={this.toggleEditMode.bind(this)}>
+                Edit
               </button>
             </td>
           </tr>
