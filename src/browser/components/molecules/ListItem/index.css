@@ -16,3 +16,10 @@
   position: relative;
   top: 12px;
 }
+
+.inputForm {
+  position: relative;
+  top: -13px;
+  left: -27px;
+  height: 27px;
+}

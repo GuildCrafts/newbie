@@ -11,17 +11,18 @@ export default class ListItem extends Component {
     }
   }
 
-  enableEditMode(){
+  toggleEditMode(){
     this.setState({ editmode: !this.state.editmode })
   }
 
   submitEdits(){
-
+    this.toggleEditMode()
   }
 
   render() {
     const task = this.props.task
-    let comboButton = 'btn btn-default btn-sm ' + styles.button
+    const comboButton = 'btn btn-default btn-sm ' + styles.button
+
     // let comboContainer = 'container ' + styles.listitem
 
     const taskTitle = this.state.editmode
@@ -36,6 +37,16 @@ export default class ListItem extends Component {
       ? <InputField value={task.days_to_complete} />
       : <p className={styles.text}>{task.days_to_complete}</p>
 
+    const submitButton = this.state.editmode
+      ? <button type="button" className={comboButton}
+          aria-label="Left Align" onClick={this.submitEdits.bind(this)}>
+          Submit
+        </button>
+      : <button type="button" className={comboButton}
+          aria-label="Left Align" onClick={this.props.deleteTaskCallback.bind(this, task)}>
+          Delete
+        </button>
+
     return (
       <div className='container'>
         <div className='col-md-2'>{taskTitle}</div>
@@ -43,17 +54,10 @@ export default class ListItem extends Component {
         <div className='col-md-1'>{taskDaysToComplete}</div>
         <div className='col-md-4'>
           <button type="button" className={comboButton}
-            aria-label="Left Align" onClick={this.props.deleteTaskCallback.bind(this, task)}>
-            Delete
-          </button>
-          <button type="button" className={comboButton}
-            aria-label="Left Align" onClick={this.enableEditMode.bind(this)}>
+            aria-label="Left Align" onClick={this.toggleEditMode.bind(this)}>
             Edit
           </button>
-          <button type="button" className={comboButton}
-            aria-label="Left Align" onClick={this.submitEdits.bind(this)}>
-            Submit
-          </button>
+          {submitButton}
           <div className='col-md-3'></div>
         </div>
         <div className={styles.bottomborder}></div>
