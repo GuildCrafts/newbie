@@ -16,13 +16,13 @@ export default class List extends Component{
       <div className='container'>
         <div className={styles.row}>
           <div className='col-md-2'>
-            <h4 className='tableHeader'>Title</h4>
+            <h4>Title</h4>
           </div>
           <div className='col-md-5'>
-            <h4 className='tableHeader'>Description</h4>
+            <h4 className={styles.tableDescription}>Description</h4>
           </div>
           <div className='col-md-3'>
-            <h4 className='tableHeader'>Days to Complete</h4>
+            <h4 className={styles.tableDays}>Days to Complete</h4>
           </div>
           <div className='col-md-2'></div>
         </div>

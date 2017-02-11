@@ -16,25 +16,25 @@ export default class ListItem extends Component {
   }
 
   submitEdits(){
-    
+
   }
 
   render() {
     const task = this.props.task
-    let comboButton = 'btn btn-default ' + styles.button
+    let comboButton = 'btn btn-default btn-sm ' + styles.button
     // let comboContainer = 'container ' + styles.listitem
 
     const taskTitle = this.state.editmode
       ? <InputField value={task.title} />
-      : task.title
+      : <p className={styles.text}>{task.title}</p>
 
     const taskDescription = this.state.editmode
       ? <InputField value={task.description} />
-      : task.description
+      : <p className={styles.text}>{task.description}</p>
 
     const taskDaysToComplete = this.state.editmode
       ? <InputField value={task.days_to_complete} />
-      : task.days_to_complete
+      : <p className={styles.text}>{task.days_to_complete}</p>
 
     return (
       <div className='container'>

@@ -20,7 +20,12 @@
   padding: 20px 0px;
 }
 
-.tableHeader {
-  font-weight: bold;
-  font-size: 1.5em;
+.tableDescription {
+  position: relative;
+  left: -27px;
+}
+
+.tableDays {
+  position: relative;
+  left: -46px;
 }

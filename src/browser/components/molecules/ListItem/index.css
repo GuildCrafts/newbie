@@ -1,7 +1,18 @@
 .button {
   margin: 5px;
+  position: relative;
+  top: 6px;
+  left: -11px;
 }
 
 .bottomborder {
-  border-bottom: 1px gray solid
+  position: relative;
+  top: 63px;
+  border-bottom: 1px gray solid;
+  width: 90%;
+}
+
+.text {
+  position: relative;
+  top: 12px;
 }
