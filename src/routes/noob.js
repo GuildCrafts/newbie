@@ -6,7 +6,7 @@ import * as tasks from '../database/queries/task'
 
 const router = express.Router()
 
-router.get('/:githubHandle', function(request, response, next){
+router.get('/', function(request, response, next){
   const currentUserHandle = request.user.handle
   noob.findByHandle( currentUserHandle )
   .then( newbie => {

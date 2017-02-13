@@ -8,7 +8,7 @@ export default class NewbieDashboard extends Component {
   constructor(props){
     super(props)
       this.state = {
-        currentNewbieInfo: {},
+        currentNewbieInfo: [],
         mentor: {}
       }
   }
@@ -18,7 +18,7 @@ export default class NewbieDashboard extends Component {
   }
 
   fetchCurrentUser(){
-    fetchURL('/api/noob/:githubHandle')
+    fetchURL('/api/noob')
       .then(currentNewbieInfo => {
         this.setState({
           currentNewbieInfo: currentNewbieInfo,
