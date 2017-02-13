@@ -20,6 +20,9 @@ const findByRole = role =>
 const findAll = () =>
   utilities.findAll('users').then(user => user)
 
+const findNoobsMentor = mentor_id =>
+  utilities.findRecord('users', 'id', mentor_id )
+
 const deleteAll = () =>
   utilities.deleteAll( 'users' )
 
@@ -30,5 +33,6 @@ export {
   deleteByHandle,
   findByRole,
   findAll,
-  deleteAll
+  deleteAll,
+  findNoobsMentor
 }
