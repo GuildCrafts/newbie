@@ -8,7 +8,7 @@ export default class NewbieDashboard extends Component {
   constructor(props){
     super(props)
       this.state = {
-        currentNewbieInfo: [],
+        currentNewbieInfo: {},
         mentor: {}
       }
   }
