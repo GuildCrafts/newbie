@@ -1,0 +1,78 @@
+.TaskDiv,
+.TaskComplete,
+.NearDue,
+.SoonDue,
+.PastDue {
+  color: mintcream;
+  padding: 3px;
+  border: azure 5px solid;
+  margin: 5px;
+  font-family: comic;
+  border-radius: 3px;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.TaskDiv {
+  background-color: yellowgreen;
+}
+
+.TaskComplete {
+  background-color: #ab8;
+}
+
+.dog {
+  background-image: url("http://i0.kym-cdn.com/photos/images/facebook/000/234/765/b7e.jpg");
+}
+
+.NearDue {
+  background-color: orange;
+}
+
+.SoonDue {
+  background-color: coral;
+}
+
+.PastDue {
+  background-color: red;
+  border: yellow 5px solid;
+}
+
+.TaskDescription {
+  font-size: 1.1rem;
+  background-color: rgba(125,125,125,0.4);
+  border: papayawhip 1px solid;
+  padding: 2px 6px;
+  margin: 3px;
+  width: 580px;
+  min-height: 60px;
+}
+
+.NotifyCircle{
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  background-color: rgba(0,0,0,0.3);
+  border: papayawhip 1px solid;
+  margin: 4px;
+}
+
+.DueDateDiv{
+  border-left: papayawhip 2px solid;
+  padding-left: 8px;
+  width: 175px;
+}
+
+.NotifyWrapper {
+  display: flex;
+}
+
+.AlertDueDate {
+  color: yellow;
+  font-weight: bold;
+}
+
+.CompleteButton{
+  margin-top: 4px
+}

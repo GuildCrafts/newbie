@@ -11,6 +11,9 @@ const findByHandle = github_handle =>
 const updateByHandle = (github_handle, attributes) =>
   utilities.updateRecord('noob', 'github_handle', github_handle, attributes)
 
+const updateById = (id, attributes) =>
+      utilities.updateRecord('noob', 'id', id, attributes)
+
 const deleteByHandle = github_handle =>
   utilities.deleteRecord('noob', 'github_handle', github_handle)
 
@@ -19,6 +22,9 @@ const getAllByStartDate = start_date =>
 
 const findAll = () =>
   utilities.findAll('noob')
+
+const unassignedMentor = () =>
+  utilities.findAllWhere('noob', 'mentor_id', null)
 
 const graduate = github_handle => {
   return knex.transaction((t) => {
@@ -43,13 +49,18 @@ const graduate = github_handle => {
   })
 }
 
+const deleteAll = () =>
+  utilities.deleteAll( 'noob' )
 
 export {
   create,
   findByHandle,
   updateByHandle,
+  updateById,
   deleteByHandle,
   getAllByStartDate,
   findAll,
-  graduate
+  graduate,
+  deleteAll,
+  unassignedMentor
 }

@@ -77,18 +77,3 @@ describe('templateTask', () => {
   })
 
 })
-
-// templateTasks: [ { id: 3,
-//     name: 'Massage',
-//     body: 'Give a senior Learner a foot massage for one hour',
-//     user_role: 'noob',
-//     days_to_complete: 7,
-//     created_at: Thu Jan 26 2017 17:12:51 GMT-0800 (PST),
-//     updated_at: Thu Jan 26 2017 17:12:51 GMT-0800 (PST) },
-//   { id: 4,
-//     name: 'Breath',
-//     body: 'Take 7 deep breaths',
-//     user_role: 'mentor',
-//     days_to_complete: 1,
-//     created_at: Thu Jan 26 2017 17:12:51 GMT-0800 (PST),
-//     updated_at: Thu Jan 26 2017 17:12:51 GMT-0800 (PST) } ]

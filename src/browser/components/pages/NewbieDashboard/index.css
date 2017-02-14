@@ -1,0 +1,11 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.newbieInfo {
+  text-align: right;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}

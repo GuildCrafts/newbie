@@ -1,0 +1,16 @@
+.templateTaskListContainer{
+  border: 1px solid black;
+  max-width: 75%;
+  margin: auto;
+}
+
+.templateTaskWrapper{
+  margin: 10px;
+}
+span{
+  padding: 20px;
+}
+
+.tableWhiteSpace {
+  white-space: pre;
+}
