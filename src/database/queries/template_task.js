@@ -12,6 +12,7 @@ const deleteRecord = ( column, data) =>
 
 const getAll = () =>
   _.findAll( 'template_task' )
+  .orderBy('days_to_complete', 'asc')
 
 const getBy = ( column, data ) =>
   _.findAllWhere( 'template_task', column, data )
