@@ -3,6 +3,7 @@ import Layout from '../../molecules/Layout/index'
 import styles from './index.css'
 import GenericDashboard from '../GenericDashboard/index'
 import MentorDashboard from '../MentorDashboard/index'
+import NewbieDashboard from '../NewbieDashboard/index'
 import TemplateTask from '../TemplateTask/index'
 import {browserHistory} from 'react-router'
 
@@ -44,7 +45,7 @@ export default class Dashboard extends Component {
     } else if (user.role === 'mentor') {
       return <MentorDashboard />
     } else if (user.role === 'noob') {
-      return <GenericDashboard title='Newbie Dashboard' />
+      return <NewbieDashboard />
     } else {
       browserHistory.push('/signup')
     }

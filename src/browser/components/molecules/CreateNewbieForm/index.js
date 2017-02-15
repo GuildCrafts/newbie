@@ -57,7 +57,7 @@ export default class CreateNewbie extends Component {
     const selectedDayConfirmation = this.state.dayConfirmationDisplay
       ? <div>
         <p className={styles.selectedDayText}>
-          Selected day { this.state.selectedDay.toLocaleDateString() }
+          Your start date is: { this.state.selectedDay.toLocaleDateString() }
         </p>
         <button
           className={comboButtonBlue}
