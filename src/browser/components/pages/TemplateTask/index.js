@@ -69,7 +69,6 @@ export default class TemplateTask extends Component {
     };
   }
 
-
   toggleTempTaskNoobForm() {
     this.setState({
       showTemplateTaskForNoob: !this.state.showTemplateTaskForNoob
@@ -87,12 +86,13 @@ export default class TemplateTask extends Component {
   }
 
   renderTemplateTasks(tasks, options){
-    const templateTaskFormJSX = this.addButtonOrForm(options.showForm, options.toggleFormFn, options.userRole)
+    const templateTaskFormJSX = this.addButtonOrForm(options.showForm, options.toggleFn, options.userRole)
     return (
       <div className='panel panel-info'>
         <div className='panel-heading'>{options.heading}</div>
         <div className='panel-body'>
-          <List currentTemplateTasks={tasks} deleteTaskCallback={this.deleteTemplateTask}/>
+          <List currentTemplateTasks={tasks} userRole={options.userRole}
+            toggleFn={options.toggleFn} deleteTaskCallback={this.deleteTemplateTask}/>
         </div>
         {templateTaskFormJSX}
       </div>
@@ -106,8 +106,8 @@ export default class TemplateTask extends Component {
             update={(event, inputField) => this.handleTempTaskFormFields(event, inputField)}
             onSubmit={this.addTemplateTask}
             exitForm={toggleFn.bind(this)}
-           />
-           : <Button onClickEvent={toggleFn.bind(this)} text='Add Task'/>
+          />
+           :<Button onClickEvent={toggleFn.bind(this)} text='Add Task'/>
   }
 
   render() {
@@ -116,12 +116,12 @@ export default class TemplateTask extends Component {
         {this.renderTemplateTasks(this.state.currentTemplateTasks.noob,
                                   {heading: 'Newbie Template Tasks',
                                    showForm: this.state.showTemplateTaskForNoob,
-                                   toggleFormFn: this.toggleTempTaskNoobForm,
+                                   toggleFn: this.toggleTempTaskNoobForm,
                                    userRole: 'noob'})}
         {this.renderTemplateTasks(this.state.currentTemplateTasks.mentor,
                                   {heading: 'Mentor Template Tasks',
                                    showForm: this.state.showTemplateTaskForMentor,
-                                   toggleFormFn: this.toggleTempTaskMentorForm,
+                                   toggleFn: this.toggleTempTaskMentorForm,
                                    userRole: 'mentor'})}
       </div>
     )

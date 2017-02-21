@@ -1,6 +1,10 @@
 import React, { Component } from "react"
 import styles from './list.css'
+import ListItem from './ListItem/index'
+
+
 export default class List extends Component{
+
 
   render() {
     return(
@@ -14,19 +18,9 @@ export default class List extends Component{
           </tr>
         </thead>
         <tbody className={styles.tableWhiteSpace}>
-        { (this.props.currentTemplateTasks || []).map((task) =>
-          <tr key={task.id}>
-            <td>{task.title}</td>
-            <td>{task.description}</td>
-            <td>{task.days_to_complete}</td>
-            <td>
-              <button type="button" className="btn btn-default"
-                aria-label="Left Align" onClick={this.props.deleteTaskCallback.bind(this, task)}>
-                Delete
-              </button>
-            </td>
-          </tr>
-        )}
+          { (this.props.currentTemplateTasks || []).map((task) =>
+              <ListItem task={task} {...this.props} />
+          )}
         </tbody>
       </table>
     )
