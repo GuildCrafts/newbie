@@ -30,33 +30,9 @@ const convert = github_handle => {
     role: 'noob',
     email: 'fart_monster@hemorroid.butt',
   }).then(user => {
-
-    console.log('user', user)
     return user.start_date
-    // moment().add(7, 'days');
-
   })
 
 }
-
-
-  // user.findByHandle( github_handle ).then( user => {
-  //   somethingHappens.then( templateTask =>
-  //     if ( templateTask.user_role === role ) {
-  //       let attributes = {
-  //         user_id: user_id,
-  //         body: templateTask.body,
-  //         is_complete: false,
-  //         due_date: user.start_date + templateTask.days_to_complete
-  //         template_task_id: templateTask.id,
-  //       }
-  //       task.add(attributes)
-  //     }
-  //   )
-  // })
-
-//forEach templateTask
-//check if user has role
-//if so, add new task assigned to provided user_id
 
 export { add, deleteAll, getAll, getBy, update, expunge, convert }
