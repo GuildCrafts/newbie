@@ -33,7 +33,6 @@ const convertTemplateTasks = ( templateTasks, userId, startDate ) => {
       }
       return attributes
   })
-  console.log('going to add tasks:', tasks);
   return add(tasks)
 }
 

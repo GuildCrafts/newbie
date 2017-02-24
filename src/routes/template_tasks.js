@@ -42,7 +42,7 @@ router.put('/:id', function(req, res, next){
 
 router.delete('/:id', function(req, res, next){
   const {id} = req.params
-  templateTask.deleteRecord('id', id).then(result => {
+  templateTask.expunge('id', id).then(result => {
     res.json({message: 'Successfully deleted the task.'});
   })
 })

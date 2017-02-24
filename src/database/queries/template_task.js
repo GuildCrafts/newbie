@@ -1,4 +1,7 @@
 import knex from '../knex'
+import moment from 'moment'
+import * as task from './task'
+import * as user from './users'
 import * as _ from './utilities'
 
 const add = attributes =>
@@ -6,9 +9,6 @@ const add = attributes =>
 
 const deleteAll = () =>
   _.deleteAll( 'template_task' )
-
-const deleteRecord = ( column, data) =>
-  _.deleteRecord('template_task', column, data);
 
 const getAll = () =>
   _.findAll( 'template_task' )
@@ -23,4 +23,16 @@ const update = ( id, attributes ) =>
 const expunge = ( column, data ) =>
   _.deleteRecord( 'template_task', column, data )
 
-export { add, deleteAll, getAll, getBy, update, expunge, deleteRecord }
+const convert = github_handle => {
+  return user.create({
+    full_name: "Face",
+    github_handle: "TB",
+    role: 'noob',
+    email: 'TB@HB.com',
+  }).then(user => {
+    return user.start_date
+  })
+
+}
+
+export { add, deleteAll, getAll, getBy, update, expunge, convert }
