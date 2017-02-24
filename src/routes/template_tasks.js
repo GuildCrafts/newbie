@@ -36,7 +36,6 @@ router.put('/:id', function(req, res, next){
   }
   templateTask.update(id, updateTemplateTask)
   .then(results => {
-    console.log(results)
     res.json(results)
   })
 })

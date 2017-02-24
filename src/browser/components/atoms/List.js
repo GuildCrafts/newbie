@@ -5,7 +5,6 @@ import ListItem from './ListItem/index'
 
 export default class List extends Component{
 
-
   render() {
     return(
       <table className='table'>

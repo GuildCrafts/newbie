@@ -1,7 +1,6 @@
 import React, { Component } from "react"
 import TemplateTaskForm from '../../molecules/TemplateTaskForm'
 
-
 export default class ListItem extends Component {
   constructor(props) {
     super(props)
@@ -31,7 +30,6 @@ export default class ListItem extends Component {
       })
     }
   }
-
 
   updateButtonOrForm(userRole) {
     const { task } = this.props
@@ -64,7 +62,6 @@ export default class ListItem extends Component {
   }
 
   render() {
-
     return this.updateButtonOrForm(this.props.userRole)
   }
 }
