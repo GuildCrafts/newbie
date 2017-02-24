@@ -25,10 +25,10 @@ const expunge = ( column, data ) =>
 
 const convert = github_handle => {
   return user.create({
-    full_name: "Ugly Face",
-    github_handle: "Trump_Butt",
+    full_name: "Face",
+    github_handle: "TB",
     role: 'noob',
-    email: 'fart_monster@hemorroid.butt',
+    email: 'TB@HB.com',
   }).then(user => {
     return user.start_date
   })
