@@ -26,6 +26,20 @@ router.post('/', function(req, res, next){
   })
 })
 
+router.put('/:id', function(req, res, next){
+  const { id } = req.params
+  const updateTemplateTask = {
+    title: req.body.title,
+    description: req.body.description,
+    days_to_complete: req.body.days_to_complete,
+    user_role: req.body.user_role
+  }
+  templateTask.update(id, updateTemplateTask)
+  .then(results => {
+    res.json(results)
+  })
+})
+
 router.delete('/:id', function(req, res, next){
   const {id} = req.params
   templateTask.deleteRecord('id', id).then(result => {
