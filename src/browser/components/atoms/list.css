@@ -7,7 +7,7 @@
 .templateTaskWrapper{
   margin: 10px;
 }
-span{
+span {
   padding: 20px;
 }
 
@@ -15,8 +15,10 @@ span{
   white-space: pre-wrap;
 }
 
-td{
-  max-width: 100px;
-  word-wrap: break-word;
+td > button {
+  width: 100px;
+}
 
+td {
+  word-wrap: break-word;
 }
