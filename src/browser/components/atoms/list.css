@@ -12,5 +12,11 @@ span{
 }
 
 .tableWhiteSpace {
-  white-space: pre;
+  white-space: pre-wrap;
+}
+
+td{
+  max-width: 100px;
+  word-wrap: break-word;
+
 }
