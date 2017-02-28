@@ -5,7 +5,7 @@ import GenericDashboard from '../GenericDashboard/index'
 import MentorDashboard from '../MentorDashboard/index'
 import NewbieDashboard from '../NewbieDashboard/index'
 import TemplateTask from '../TemplateTask/index'
-import {browserHistory} from 'react-router'
+import {Link, browserHistory} from 'react-router'
 
 export default class Dashboard extends Component {
 
@@ -40,6 +40,7 @@ export default class Dashboard extends Component {
     if(user.role === 'admin') {
       return (<div>
                 <h3>Admin Dashboard</h3>
+                <Link to={'/overdue_tasks'} > Overdue Tasks </Link>
                 <TemplateTask />
               </div>)
     } else if (user.role === 'mentor') {

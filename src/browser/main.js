@@ -5,6 +5,7 @@ import { Router, Route, Link, browserHistory } from 'react-router'
 import TemplateTask from './components/pages/TemplateTask/index'
 import Signup from './components/pages/Signup/index'
 import Dashboard from './components/pages/Dashboard'
+import OverdueTaskDashboard from './components/pages/OverdueTaskDashboard'
 
 class Root extends Component {
   render() {
@@ -12,6 +13,7 @@ class Root extends Component {
       <Router history={browserHistory}>
         <Route path='/' component={Dashboard} />
         <Route path='/signup' component={Signup} />
+        <Route path='/overdue_tasks' component={OverdueTaskDashboard} />
         <Route path='/template_tasks' component={TemplateTask}/>
       </Router>
     )
