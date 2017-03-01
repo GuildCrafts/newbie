@@ -47,9 +47,10 @@ router.post('/:task_id', (request, response, next) => {
     console.log(`Error loading user ${currentUser.handle}, or Task id ${task_id}.`);
     throw err
   })
-
-
-
 })
 
+router.get('/getAll', (request, response, next) => {
+  task.getAll()
+  .then(tasks => response.json(tasks))
+})
 export default router
