@@ -49,7 +49,7 @@ router.post('/:task_id', (request, response, next) => {
   })
 })
 
-router.get('/getAll', (request, response, next) => {
+router.get('/all', (request, response, next) => {
   task.getAll()
   .then(tasks => response.json(tasks))
 })

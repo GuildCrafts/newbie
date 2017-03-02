@@ -35,6 +35,9 @@ router.post('/', (request, response, next) => {
   })
 })
 
-
+router.get('/all', function(request, response){
+  users.findAll()
+  .then(results => response.json(results))
+})
 
 export default router

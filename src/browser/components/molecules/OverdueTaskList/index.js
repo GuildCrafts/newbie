@@ -6,7 +6,8 @@ export default class OverdueTaskList extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      tasks: []
+      tasks:[],
+      users:[]
     }
   }
 
@@ -18,6 +19,33 @@ export default class OverdueTaskList extends Component {
 
   componentDidMount(){
     this.fetchTasks()
+    this.fetchUsers()
+  }
+
+
+  fetchUsers(){
+    const options = {
+      method: 'GET',
+      mode: 'cors',
+      headers: new Headers({
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }),
+      credentials: 'same-origin'
+    }
+    fetch('api/users/all', options)
+    .then( data => {
+      return data.json()
+    })
+    .then ( results => {
+      this.setState({
+        users: results
+      })
+    })
+    .catch ( err => {
+      console.log('error finding Users', err)
+      return err
+    })
   }
 
   fetchTasks(){
@@ -30,12 +58,11 @@ export default class OverdueTaskList extends Component {
       }),
       credentials: 'same-origin'
     }
-    fetch('api/task/getAll', options)
+    fetch('api/task/all', options)
     .then( data => {
       return data.json()
     })
     .then (result => {
-
       this.setState({
         tasks: result.filter(this.isOverdue)
       })
