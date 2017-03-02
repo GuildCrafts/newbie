@@ -7,10 +7,18 @@
 .templateTaskWrapper{
   margin: 10px;
 }
-span{
+span {
   padding: 20px;
 }
 
 .tableWhiteSpace {
-  white-space: pre;
+  white-space: pre-wrap;
+}
+
+td > button {
+  width: 100px;
+}
+
+td {
+  word-wrap: break-word;
 }
