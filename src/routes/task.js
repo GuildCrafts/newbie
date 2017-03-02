@@ -49,8 +49,9 @@ router.post('/:task_id', (request, response, next) => {
   })
 })
 
-router.get('/all', (request, response, next) => {
-  Promise.all([task.getAll(), user.findAll() ])
+router.get('/tasksAndUsers', (request, response, next) => {
+  task.getTasksAndUsers()
   .then(results => response.json(results))
 })
+
 export default router

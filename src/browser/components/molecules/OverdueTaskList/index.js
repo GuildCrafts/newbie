@@ -7,64 +7,37 @@ export default class OverdueTaskList extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      tasks:[],
-      users:[]
+      tasks:[]
     }
   }
 
   componentDidMount(){
-    this.fetchTasks()
-  }
-
-  fetchTasks(){
-    const options = {
-      method: 'GET',
-      mode: 'cors',
-      headers: new Headers({
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      }),
-      credentials: 'same-origin'
-    }
-    fetch('api/task/all', options)
-    .then( data => {
-      return data.json()
-    })
-    .then (result => {
-      const tasks = result[0]
-      const users = result[1]
-      this.setState({
-        tasks: tasks.filter(this.isOverdue),
-        users: users
+    fetchURL('api/task/tasksAndUsers')
+    .then(results => {
+    this.setState({
+      tasks: results.filter(this.isOverdue),
       })
     })
-    .catch( err => {
+    .catch(err => {
       return err
     })
   }
 
-  findGithubHandelByUUID( user_id ){
-    for( let user of this.state.users ){
-      if ( user.id == user_id ){
-        return user.github_handle
-      }
-    }
-    return "no github_handle found"
-  }
 
   findEmailByUUID( user_id ){
-    for( let user of this.state.users ){
-      if( user.id == user_id ){
-        if(user.email !== null) {
+    for( let task of this.state.tasks ){
+      if( task.user_id == user_id ){
+        if(task.email !== null) {
           return (
-            <a href={`mailto:${user.email}`}>
-              {this.findGithubHandelByUUID(user.id)}
+            <a href={`mailto:${task.email}`}>
+              {task.github_handle}
             </a>
           )
+        } else {
+          return task.github_handle
         }
       }
     }
-    return this.findGithubHandelByUUID(user_id)
   }
 
   isOverdue(task){
@@ -113,7 +86,7 @@ export default class OverdueTaskList extends Component {
                     <td>
                       {this.daysOverdue(task.due_date)}
                     </td>
-                </tr>)}
+                  </tr>)}
               </tbody>
             </table>
           </div>

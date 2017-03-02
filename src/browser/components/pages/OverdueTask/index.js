@@ -3,7 +3,7 @@ import OverdueTaskList from '../../molecules/OverdueTaskList/index'
 import { fetchURL, toStandardDate } from '../../../common/utils'
 import moment from 'moment'
 
-export default class OverdueTaskDashboard extends Component {
+export default class OverdueTask extends Component {
 
   render() {
     return (
