@@ -7,10 +7,9 @@ export default class OverdueTaskDashboard extends Component {
 
   render() {
     return (
-      <div>
+      <div className='container'>
         <div>
           <h1>Overdue Tasks</h1>
-          {/* <Button onClick='goBackToAdminDashboard'/> */}
         </div>
         <OverdueTaskList/>
       </div>
