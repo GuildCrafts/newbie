@@ -1,6 +1,6 @@
 # abnormal-hyena @hjbowers @zezemanolo
 ## Description
-Working on Noob's task view interface.
+Working on Noob's Admin page(back end and front end).
 
 ## Project Specs
 - [ ] [Issue #91:](https://github.com/GuildCrafts/noob/issues/91) Create CRUD for tags
