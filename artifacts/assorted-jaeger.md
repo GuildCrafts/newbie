@@ -1,6 +1,6 @@
 # Assorted Jaeger
 ## Description
-Working on Noob's task view interface.
+Working on UI and a few pieces of functionality.
 
 ## Project Specs
 - [ ] [Issue #90:](https://github.com/GuildCrafts/noob/issues/90) Tasks should be sorted according to title
