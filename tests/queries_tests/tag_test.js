@@ -3,7 +3,7 @@ import * as tag from '../../src/database/queries/tag'
 
 describe('tag', () => {
 
-  const fakeTag = [
+  const fakeTags = [
     {
       names: 'Massage'
     },
@@ -12,14 +12,21 @@ describe('tag', () => {
     }
   ]
 
+  beforeEach( () =>
+    Promise.all([
+      tag.deleteAll(),
+      tag.add(fakeTags)
+    ])
+  )
+
   it('should exist', () =>
     expect(tag).to.be.a('object')
   )
 
   it('should return all tags ordered ascending by names', () =>
     tag.getAll().then( tags => {
-      expect( fakeTag[0].names ).to.equal('Massage')
-      expect( fakeTag[1].names ).to.equal('Spa')
+      expect( fakeTags[0].names ).to.equal('Massage')
+      expect( fakeTags[1].names ).to.equal('Spa')
     })
   )
 
