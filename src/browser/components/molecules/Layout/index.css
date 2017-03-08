@@ -1,0 +1,5 @@
+.layoutFooter {
+  font-size: 10;
+  display: flex;
+  flex-direction: row-reverse;;
+}
