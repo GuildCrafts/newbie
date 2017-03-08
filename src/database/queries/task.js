@@ -9,6 +9,9 @@ const add = attributes =>
 const getAll = () =>
   _.findAll( 'task' )
 
+const getTasksAndUsers = () =>
+  knex.select('*').from('task').leftJoin('users', 'task.user_id', 'users.id')
+
 const getBy = ( column, data ) =>
   _.findAllWhere( 'task', column, data )
 
@@ -49,5 +52,6 @@ export { add,
          update,
          expunge,
          deleteAll,
+         getTasksAndUsers,
          convertTemplateTasks,
          addTemplateTasksByRole }
