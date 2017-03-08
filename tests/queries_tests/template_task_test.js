@@ -15,7 +15,19 @@ describe('templateTask', () => {
       description: 'Take 7 deep breaths',
       user_role: 'mentor',
       days_to_complete: 6
-    }
+    },
+    {
+      title: 'Lunch',
+      description: 'Buy your mentor lunch',
+      user_role: 'noob',
+      days_to_complete: 6
+    },
+    {
+      title: 'Sing',
+      description: 'Run around the guild and sing im a little teapot',
+      user_role: 'noob',
+      days_to_complete: 6
+    },
   ]
 
   const fakeUpdate = {
@@ -36,12 +48,14 @@ describe('templateTask', () => {
     expect(templateTask).to.be.a('object')
   )
 
-  it('should return all template tasks ordered by days_to_complete', () =>
-    templateTask.getAll().then( templateTasks => {
-      expect( templateTasks[0].title ).to.equal('Breath')
-      expect( templateTasks[1].title ).to.equal('Massage')
-    })
-  )
+  templateTask.getAll().then( templateTasks => {
+
+  const taskTitles = templateTask.map( task => task.title )
+    it('should return all template tasks ordered by days_to_complete and title', () =>
+    expect(taskTitles).to.equal(['Breath', 'Lunch', 'Massage'])
+    expect(taskTitles.length).to.equal(3)
+    )
+  })
 
   it('gets a template task by title', () =>
     templateTask.getBy('title', 'Massage').then( templateTasks =>
