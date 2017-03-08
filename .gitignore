@@ -4,3 +4,4 @@ npm-debug.log
 src/public/dist/*
 .DS_Store
 ./idm
+.npmrc
