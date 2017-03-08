@@ -13,6 +13,7 @@ const deleteAll = () =>
 const getAll = () =>
   _.findAll( 'template_task' )
   .orderBy('days_to_complete', 'asc')
+  .orderBy('title', 'asc')
 
 const getBy = ( column, data ) =>
   _.findAllWhere( 'template_task', column, data )
