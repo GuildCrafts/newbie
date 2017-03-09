@@ -4,9 +4,11 @@ import styles from './index.css'
 
 export default class Navbar extends Component {
   render() {
+    const {user} = this.props
+
     return <div className={styles.Navbar}>
              Newbie
-             <UserImage />
+             <UserImage user={user} />
             </div>
   }
 }

@@ -24,13 +24,14 @@ export default class Dashboard extends Component {
       }),
       credentials: 'same-origin'
     }
+
     fetch('/api/users/current_user', options)
       .then( response => {
         return response.json()
       })
       .then( user => {
-        this.setState({user: user})
-      });
+        this.setState({ user })
+      })
   }
 
   chooseDashboardJSX(user){
@@ -56,7 +57,7 @@ export default class Dashboard extends Component {
     console.log('state:', this.state)
     return (
         <Layout>
-        <Navbar />
+        <Navbar user={this.state.user} />
           {this.chooseDashboardJSX(this.state.user)}
         </Layout>
     )
