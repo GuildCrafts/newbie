@@ -6,8 +6,7 @@ const router = express.Router()
 
 router.get('/', function(req, res, next){
   tag.getAll()
-  .then( results => {
-    const tags = groupBy(results, tag => tag.name)
+  .then( tags => {
     res.json(tags)
   })
 })

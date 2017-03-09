@@ -7,7 +7,6 @@ exports.up = function(knex, Promise) {
       table.inherits('users');
       table.integer('mentor_id');
       table.date('start_date');
-
     }),
 
     knex.schema.createTable('task', function(table) {

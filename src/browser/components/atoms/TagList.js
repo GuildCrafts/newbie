@@ -1,11 +1,14 @@
 import React, { Component } from "react"
 import styles from './list.css'
-import ListItem from './ListItem/index'
+import TagListItem from './TagListItem/index'
 
 
 export default class TagList extends Component{
 
   render() {
+    var tagMap = (this.props.currentTags || []).map((tag) =>
+        <TagListItem tag={tag} {...this.props} />
+    )
     return(
       <table className='table'>
         <thead>
@@ -15,9 +18,7 @@ export default class TagList extends Component{
           </tr>
         </thead>
         <tbody className={styles.tableWhiteSpace}>
-          { (this.props.currentTags || []).map((tag) =>
-              <ListItem tag={tag} {...this.props} />
-          )}
+          {tagMap}
         </tbody>
       </table>
     )
