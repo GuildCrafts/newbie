@@ -7,7 +7,7 @@ const router = express.Router()
 router.get('/', function(req, res, next){
   tag.getAll()
   .then( results => {
-    const tags = groupBy(results, tag => tag.names)
+    const tags = groupBy(results, tag => tag.label)
     res.json(tags)
   })
 })
@@ -15,7 +15,7 @@ router.get('/', function(req, res, next){
 router.post('/', function(req, res, next){
   tag.add(req.body)
   const newTag = {
-    names: req.body.names
+    label: req.body.label
   }
   tag.add(newTag)
   .then(results => {

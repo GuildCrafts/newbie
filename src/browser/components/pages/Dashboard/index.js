@@ -5,6 +5,7 @@ import GenericDashboard from '../GenericDashboard/index'
 import MentorDashboard from '../MentorDashboard/index'
 import NewbieDashboard from '../NewbieDashboard/index'
 import TemplateTask from '../TemplateTask/index'
+import Tag from '../Tag/index'
 import {browserHistory} from 'react-router'
 
 export default class Dashboard extends Component {
@@ -41,6 +42,7 @@ export default class Dashboard extends Component {
       return (<div>
                 <h3>Admin Dashboard</h3>
                 <TemplateTask />
+                <Tag />
               </div>)
     } else if (user.role === 'mentor') {
       return <MentorDashboard />

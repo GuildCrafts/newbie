@@ -7,6 +7,7 @@ import webpack from 'webpack'
 import config from '../webpack.config'
 import { parseConfig, getEnv } from './config/config'
 import task from './routes/task'
+import tag from './routes/tag'
 import auth from './init/auth'
 const app = express()
 const compiler = webpack(config)
@@ -47,6 +48,7 @@ app.use('/api/noob', noob)
 app.use('/api/mentors', mentors)
 app.use('/api/template_tasks', template_tasks)
 app.use('/api/users', users)
+app.use('/api/tag', tag)
 
 /* GET home page. */
 app.get('*', function(req, res, next) {

@@ -1,0 +1,11 @@
+
+.TagList {
+  background-color: lightseagreen;
+  color: mintcream;
+  border: peru;
+  border-width: thick;
+  margin: 5px;
+  padding: 5px;
+  max-width: 800px;
+  border-radius: 3px;
+}

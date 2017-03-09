@@ -5,10 +5,10 @@ describe('tag', () => {
 
   const fakeTags = [
     {
-      names: 'Massage'
+      label: 'Massage'
     },
     {
-      names: 'Spa'
+      label: 'Spa'
     }
   ]
 
@@ -23,10 +23,10 @@ describe('tag', () => {
     expect(tag).to.be.a('object')
   )
 
-  it('should return all tags ordered ascending by names', () =>
+  it('should return all tags ordered ascending by label', () =>
     tag.getAll().then( tags => {
-      expect( fakeTags[0].names ).to.equal('Massage')
-      expect( fakeTags[1].names ).to.equal('Spa')
+      expect( fakeTags[0].label ).to.equal('Massage')
+      expect( fakeTags[1].label ).to.equal('Spa')
     })
   )
 
