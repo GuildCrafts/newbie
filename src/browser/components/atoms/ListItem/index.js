@@ -33,7 +33,6 @@ export default class ListItem extends Component {
 
   updateButtonOrForm(userRole) {
     const { task } = this.props
-    debugger
     return this.state.clickedEdit ?
             <div>
               <TemplateTaskForm

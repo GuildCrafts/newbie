@@ -1,82 +1,43 @@
 import React, { Component } from 'react'
 
 export default class DropDown extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {value: 'coconut'};
 
-  render () {
-    return (
-      <div className='dropdown'>
-        <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-        <input
-          type='text'
-          className='tag'
-          defaultValue={defaultValue}
-          name={name}
-          onChange={this.props.onChange.bind(this)}
-          >
-        </input>
-      </div>
-    )
-  }
-}
-
-
-
-var Dropdown = React.createClass({
-  getInitialState: function() {
-    return {
-      listVisible: false
-    };
-  },
-
-  select: function(item) {
-    this.props.selected = item;
-  },
-
-  show: function() {
-    this.setState({ listVisible: true });
-    document.addEventListener("click", this.hide);
-  },
-
-  hide: function() {
-    this.setState({ listVisible: false });
-    document.removeEventListener("click", this.hide);
-  },
-
-  render: function() {
-    return <div className={"dropdown-container" + (this.state.listVisible ? " show" : "")}>
-      <div className={"dropdown-display" + (this.state.listVisible ? " clicked": "")} onClick={this.show}>
-        <span style={{ color: this.props.selected.hex }}>{this.props.selected.name}</span>
-        <i className="fa fa-angle-down"></i>
-      </div>
-      <div className="dropdown-list">
-        <div>
-          {this.renderListItems()}
-        </div>
-      </div>
-    </div>;
-  },
-
-  renderListItems: function() {
-    var items = [];
-    for (var i = 0; i < this.props.list.length; i++) {
-      var item = this.props.list[i];
-      items.push(<div onClick={this.select.bind(null, item)}>
-        <span style={{ color: item.hex }}>{item.name}</span>
-      </div>);
+      this.handleChange = this.handleChange.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
     }
-    return items;
+
+    handleChange(event) {
+      this.setState({value: event.target.value});
+    }
+
+    handleSubmit(event) {
+      alert('Your favorite flavor is: ' + this.state.value);
+      event.preventDefault();
+    }
+
+    render() {
+      return (
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Pick a Tag: 
+            <select value={this.state.value} onChange={this.handleChange}>
+              <option value="Test">Grapefruit</option>
+              <option value="Test">Grapefruit</option>
+              <option value="Test">Grapefruit</option>
+              <option value="Test">Grapefruit</option>
+              <option value="Test">Grapefruit</option>
+              <option value="Test">Grapefruit</option>
+            </select>
+          </label>
+        </form>
+      );
+    }
   }
-});
 
-var colours = [{
-  name: "Red",
-  hex: "#F21B1B"
-}, {
-  name: "Blue",
-  hex: "#1B66F2"
-}, {
-  name: "Green",
-  hex: "#07BA16"
-}];
-
-React.render(<Dropdown list={colours} selected={colours[0]} />, document.getElementById("container"));
+  // ReactDOM.render(
+  //   <FlavorForm />,
+  //   document.getElementById('root')
+  // );
