@@ -9,7 +9,7 @@ const deleteAll = () =>
 
 const getAll = () =>
   _.findAll( 'tag' )
-  .orderBy('label', 'asc')
+  .orderBy('name', 'asc')
 
 const getBy = ( column, data ) =>
   _.findAllWhere( 'tag', column, data )

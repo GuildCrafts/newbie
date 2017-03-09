@@ -26,10 +26,10 @@ export default class TemplateTaskForm extends Component{
       <div className='form-group'>
         <form className='' onSubmit={this.props.onSubmit.bind(this, this.state)}>
           <div className='form-group'>
-          <InputField label='Title' name='title' defaultValue={task.title} onChange={this.handleInputChange} />
+          <InputField name='Title' name='title' defaultValue={task.title} onChange={this.handleInputChange} />
           </div>
-          <TextArea label='Description' name='description' defaultValue={task.description} onChange={this.handleInputChange} inputType='textarea'/>
-          <InputField label='Days To Complete' name='days_to_complete' defaultValue={task.days_to_complete} onChange={this.handleInputChange}/>
+          <TextArea name='Description' name='description' defaultValue={task.description} onChange={this.handleInputChange} inputType='textarea'/>
+          <InputField name='Days To Complete' name='days_to_complete' defaultValue={task.days_to_complete} onChange={this.handleInputChange}/>
           <button type='submit' className='btn btn-primary btn-sm'>Submit</button>
           <a className='btn btn-secondary btn-sm'
           onClick={this.props.exitForm.bind(this)} href="#">Cancel</a>

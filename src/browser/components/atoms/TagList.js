@@ -10,7 +10,7 @@ export default class TagList extends Component{
       <table className='table'>
         <thead>
           <tr>
-            <th>Labels</th>
+            <th>Name</th>
             <th></th>
           </tr>
         </thead>

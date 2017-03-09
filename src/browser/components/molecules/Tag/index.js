@@ -45,7 +45,7 @@ export default class Tag extends Component {
 
     return (
         <div className={listClass}>
-          <div> <b>{tag.label}</b>
+          <div> <b>{tag.name}</b>
           </div>
         </div>
     )

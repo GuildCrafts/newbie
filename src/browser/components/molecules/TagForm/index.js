@@ -26,7 +26,7 @@ export default class TagForm extends Component{
       <div className='form-group'>
         <form className='' onSubmit={this.props.onSubmit.bind(this, this.state)}>
           <div className='form-group'>
-          <InputField label='Label' name='label' onChange={this.handleInputChange} />
+          <InputField name='Name' name='name' onChange={this.handleInputChange} />
           </div>
           <button type='submit' className='btn btn-primary btn-sm'>Submit</button>
           <a className='btn btn-secondary btn-sm'

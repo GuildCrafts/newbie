@@ -10,7 +10,7 @@ export default class Tag extends Component {
     this.state = {
       showTag: false,
       // currentTags: { noob:[],mentor:[] },
-      TagFormData: {label:''}
+      TagFormData: {name:''}
     }
     this.addTag = this.addTag.bind(this)
     this.deleteTag = this.deleteTag.bind(this)
