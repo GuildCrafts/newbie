@@ -1,43 +1,31 @@
 import React, { Component } from 'react'
+import TagListItem from './TagListItem/index'
 
 export default class DropDown extends Component {
     constructor(props) {
       super(props);
-      this.state = {value: 'coconut'};
+      this.state = {value: ''};
 
       this.handleChange = this.handleChange.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(event) {
       this.setState({value: event.target.value});
     }
 
-    handleSubmit(event) {
-      alert('Your favorite flavor is: ' + this.state.value);
-      event.preventDefault();
-    }
-
     render() {
+      var tagMap = (this.props.currentTags || []).map((tag) =>
+      <TagListItem tag={tag} {...this.props} />
+    )
       return (
-        <form onSubmit={this.handleSubmit}>
+        <form >
           <label>
-            Pick a Tag: 
-            <select value={this.state.value} onChange={this.handleChange}>
-              <option value="Test">Grapefruit</option>
-              <option value="Test">Grapefruit</option>
-              <option value="Test">Grapefruit</option>
-              <option value="Test">Grapefruit</option>
-              <option value="Test">Grapefruit</option>
-              <option value="Test">Grapefruit</option>
+            Pick a Tag:
+            <select value={tagMap} onChange={this.handleChange}>
+              <option value={this.props.currentTags}>{this.props.currentTags}</option>
             </select>
           </label>
         </form>
       );
     }
   }
-
-  // ReactDOM.render(
-  //   <FlavorForm />,
-  //   document.getElementById('root')
-  // );

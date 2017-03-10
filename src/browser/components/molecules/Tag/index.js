@@ -38,7 +38,6 @@ export default class Tag extends Component {
 
   render () {
     let tag = this.props.tag
-
     let listClass = this.props.isComplete ?
         'list-group-item list-group-item-success'
         : 'list-group-item list-group-item';

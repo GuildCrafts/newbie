@@ -7,8 +7,8 @@ export default class TagList extends Component{
 
   render() {
     var tagMap = (this.props.currentTags || []).map((tag) =>
-        <TagListItem tag={tag} {...this.props} />
-    )
+    <TagListItem tag={tag} {...this.props} />
+  )
     return(
       <table className='table'>
         <thead>
