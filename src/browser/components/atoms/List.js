@@ -17,8 +17,8 @@ export default class List extends Component{
           </tr>
         </thead>
         <tbody className={styles.tableWhiteSpace}>
-          { (this.props.currentTemplateTasks || []).map((task) =>
-              <ListItem task={task} {...this.props} />
+          { (this.props.currentTemplateTasks || []).map((task, index) =>
+              <ListItem key={index} task={task} {...this.props} />
           )}
         </tbody>
       </table>

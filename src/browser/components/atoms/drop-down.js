@@ -4,7 +4,9 @@ import React, { Component } from 'react'
 export default class DropDown extends Component {
     constructor(props) {
       super(props);
-      this.state = {value: ''};
+      this.state = {
+        value: []
+      };
 
       this.handleChange = this.handleChange.bind(this);
     }
@@ -35,18 +37,23 @@ export default class DropDown extends Component {
       })
     }
 
-    render() {
+    componentWillMount() {
       this.fetchTags()
-      // <form >
-      //   <label>
-      //     Pick a Tag:
-      //     <select value={tagMap} onChange={this.handleChange}>
-      //       <option value={tagMap}>{tagMap}</option>
-      //     </select>
-      //   </label>
-      // </form>
+    }
+
+    render() {
+      const tagArr = this.state.value
+      const tagName = tagArr.map((tagObj, index) =>
+        <option key={index} value={tagObj.name}>{tagObj.name}</option>
+      )
+
       return (
-        <pre>{JSON.stringify(this.state.value)}</pre>
+        <label>
+          Pick a Tag:
+          <select value={tagName} onChange={this.handleChange}>
+            {tagName}
+          </select>
+        </label>
       );
     }
   }
