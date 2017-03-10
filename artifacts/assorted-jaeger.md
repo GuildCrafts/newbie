@@ -3,8 +3,8 @@
 Working on UI and a few pieces of functionality.
 
 ## Project Specs
-- [ ] [Issue #90:](https://github.com/GuildCrafts/noob/issues/90) Tasks should be sorted according to title
-- [ ] [Issue #86:](https://github.com/GuildCrafts/noob/issues/86) Add a link to file an issue in the footer
+- [x] [Issue #90:](https://github.com/GuildCrafts/noob/issues/90) Tasks should be sorted according to title
+- [x] [Issue #86:](https://github.com/GuildCrafts/noob/issues/86) Add a link to file an issue in the footer
 - [ ] [Issue #85:](https://github.com/GuildCrafts/noob/issues/85) Add an estimated completion time to template tasks and tasks
 - [ ] [Issue #78:](https://github.com/GuildCrafts/noob/issues/78) Create a header for Newbie
 
