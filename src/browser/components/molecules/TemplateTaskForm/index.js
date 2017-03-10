@@ -22,7 +22,6 @@ export default class TemplateTaskForm extends Component{
   }
 
   render() {
-    console.log("Tasks ===", this.props)
     const task = this.props.task || {}
     return(
       <div className='form-group'>

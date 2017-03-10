@@ -16,7 +16,7 @@ export default class TagListItem extends Component {
   updateTag(tag){
     const confirmed = confirm('Are you sure you want to update this?');
     if(confirmed) {
-      fetch('/api/tags/' + this.props.tag.id, {
+      fetch('/api/tag/' + this.props.tag.id, {
         method: 'put',
         mode: 'cors',
         credentials: 'same-origin',

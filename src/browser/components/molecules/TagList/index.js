@@ -42,22 +42,21 @@ export default class TagList extends Component {
     })
   }
 
-  buildTagsJSX (tags, isComplete){
+  buildTagsJSX (tags){
     return tags.map( tag =>
       <Tag
         key={tag.id}
         tag={tag}
-        isComplete={isComplete}
         fetchTags={this.fetchTags.bind(this)}/>)
   }
 
-  renderTagsPanel(tags, isComplete, options) {
-    const tagsJSX = tags.length ? this.buildTagsJSX(tags, isComplete)
+  renderTagsPanel(tags, options) {
+    const tagsJSX = tags.length ? this.buildTagsJSX(tags)
                      : <div className='well'>{options.noTagsMsg}</div>
     return (
       <div className='panel panel-info'>
         <div className='panel-heading'>
-          <div className='panel-title'>{options.title}</div>
+          <div className='panel-title'>{options.name}</div>
         </div>
         <div className='panel-body'>
           <div className='list-group'>{tagsJSX}</div>
