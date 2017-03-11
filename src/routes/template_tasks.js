@@ -18,12 +18,14 @@ router.post('/', function(req, res, next){
     title: req.body.title,
     description: req.body.description,
     days_to_complete: req.body.days_to_complete,
-    user_role: req.body.user_role
+    user_role: req.body.user_role,
+    tag: req.body.tag
   }
+
   templateTask.add(newTemplateTask)
-  .then(results => {
-    res.json(results[0])
-  })
+    .then(results => {
+      res.json(results[0])
+    })
 })
 
 router.put('/:id', function(req, res, next){
@@ -32,7 +34,8 @@ router.put('/:id', function(req, res, next){
     title: req.body.title,
     description: req.body.description,
     days_to_complete: req.body.days_to_complete,
-    user_role: req.body.user_role
+    user_role: req.body.user_role,
+    tag: req.body.tag
   }
   templateTask.update(id, updateTemplateTask)
   .then(results => {
